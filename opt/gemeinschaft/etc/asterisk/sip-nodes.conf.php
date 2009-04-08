@@ -123,6 +123,14 @@ while ($gw = $rs->fetchRow()) {
 	if ($gw['name'] == '') continue;
 	if ($gw['host'] == '') continue;
 
+	if (strpos($gw['host'], ':')) {
+		$host = substr($gw['host'], 0, strpos($gw['host'], ':'));
+		$port = substr(strstr($gw['host'], ':'), 1);
+	} else {
+		$host = $gw['host'];
+		$port = '5060';
+	}
+
 	if ($gw['host'] == 'sip.1und1.de') {
 		echo '[', $gw['name'] ,']' ,"\n";
 		echo 'type = peer' ,"\n";
@@ -151,13 +159,13 @@ while ($gw = $rs->fetchRow()) {
 	else {
 		echo '[', $gw['name'] ,']' ,"\n";
 		echo 'type = peer' ,"\n";
-		echo 'host = ' , $gw['host'] ,"\n";
-		echo 'port = 5060' ,"\n";
+		echo 'host = ' , $host ,"\n";
+		echo 'port = ' , $port ,"\n";
 		echo 'username = ', $gw['user'] ,"\n";
 		echo 'secret = ' , $gw['pwd' ] ,"\n";
 		echo 'nat = yes' ,"\n";
 		echo 'dtmfmode = rfc2833' ,"\n";
-		echo 'insecure = port,invite' ,"\n";
+		echo 'insecure = invite' ,"\n";
 		//echo 'canreinvite = no' ,"\n";
 		echo 'canreinvite = nonat' ,"\n";
 		echo 'call-limit = 0' ,"\n";
