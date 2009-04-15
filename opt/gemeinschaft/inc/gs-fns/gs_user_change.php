@@ -32,7 +32,7 @@ include_once( GS_DIR .'inc/gs-fns/gs_host_by_id_or_ip.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_prov_phone_checkcfg.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_asterisks_reload.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_hylafax_authfile.php' );
-
+include_once( GS_DIR .'inc/gs-fns/gs_astphonebuttons.php' );
 
 /***********************************************************
 *    change a user account
@@ -326,6 +326,13 @@ function gs_user_change( $user, $pin, $firstname, $lastname, $host_id_or_ip, $fo
 		if (! $host['is_foreign']) {
 			//$ok = @ gs_asterisks_reload( array($host['id'] ), true );
 			$ok = @ gs_asterisks_reload( array($host['id'] ), false );
+		}
+		
+		if ( GS_BUTTONDAEMON_USE == true ) {
+			$user_name = $db->executeGetOne( 'SELECT `name` FROM `ast_sipfriends` WHERE `_user_id`=\''. $db->escape($user_id) .'\'' );
+			if (! $user_name)
+				return new GsError( 'Unknown user.' );
+			gs_buttondeamon_remove_peer($user_name);
 		}
 		/*
 		if (isGsError( $ok ))
