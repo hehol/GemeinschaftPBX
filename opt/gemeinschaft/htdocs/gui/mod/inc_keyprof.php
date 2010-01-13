@@ -115,7 +115,8 @@ $key_astbuttond = array(
 	'clir_intern' 		=> __('CLIR intern'),			# CLIR intern
 	'clir_extern' 		=> __('CLIR extern'),			# CLIR extern
 	'clir_nextcall' 		=> __('CLIR f&uuml;r n&auml;chsten Anruf'),# CLIR once
-	'url' 			=> __('URL')				# URL
+	'url' 			=> __('URL'),				# URL
+	'dnd' 			=> __('Ruhe/DND')			# DND
 
 );
 
