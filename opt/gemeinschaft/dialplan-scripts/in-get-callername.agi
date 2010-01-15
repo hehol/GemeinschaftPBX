@@ -97,21 +97,18 @@ $ext  = trim( @$argv[1] );
 $cid  = trim( @$argv[2] );
 $source = trim( @$argv[3] );
 
-if (! $ext) {
+if ( strlen( $ext ) <= 0 ) {
 	die();
 }
-
 $sources = array ( 'internal', 'external' );
 if ( ! in_array ( $source, $sources, true ))
 	die();
-
 if (! preg_match( '/^\d+$/', $ext ) ) {  // is not just digits
 	die();
 }
 if (! $cid ) {
 	die();
 }
-
 
 $db = gs_db_slave_connect();
 
@@ -142,16 +139,18 @@ if ( $source == 'internal' ) {
 	
 }
 else if ( GS_PB_REVERSE_SEARCH == true ) {
+	if ( $ext > 0 ) {
+		$num = (int)$db->executeGetOne( 'SELECT `_user_id` FROM `ast_sipfriends` WHERE `name`=\''. $db->escape($ext) .'\'' );
 
-	$num = (int)$db->executeGetOne( 'SELECT `_user_id` FROM `ast_sipfriends` WHERE `name`=\''. $db->escape($ext) .'\'' );
+		# we do not need to lookup in the private phonebook of an unknown user
+		if ( $num > 0 ) {
+				find_private( $num, $cid, $db );
+		}
 
-	# we do not need to lookup in the private phonebook of an unknown user
-	if ( $num > 0 ) {
-			find_private( $num, $cid, $db );
 	}
-
 	# if the public phonebook is disabled we will  not lookup there
-	if( GS_PB_IMPORTED_ENABLED == true )
+	if( GS_PB_IMPORTED_ENABLED == true ) {
 		find_public( $cid, $db );
+	}
 }
 ?>
