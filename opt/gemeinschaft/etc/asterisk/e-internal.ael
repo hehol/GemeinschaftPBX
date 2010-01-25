@@ -1375,7 +1375,7 @@ context to-internal-users-self {
  		if("${MEMBERINTERFACE}" != "" && "SIP/${CALLERID(ani)}" != "${MEMBERINTERFACE}" ) {
  			Set(exttype=queue);
  		}
-		/*
+		/*		
  		Verbose(1,###### DIALSTATUS     : ${DIALSTATUS});
  		Verbose(1,###### exttype        : ${exttype});
  		Verbose(1,###### CALLERID(all)  : ${CALLERID(all)});
@@ -1408,7 +1408,29 @@ context to-internal-users-self {
 		if ("${exttype}" = "user" && "${is_callfile_origin}" = "") {
 			// to internal user, store dial log (in|missed)
 			
-			if ("${DIALEDPEERNUMBER}" = "" || "${DIALSTATUS}" = "ANSWER" ) {
+			if ( "${DIALEDPEERNUMBER}" != "" && "${CHANNEL:0:5}" == "Local" ) {
+				Set(type=missed);
+				if ("${DIALSTATUS}" = "ANSWER")
+                                        Set(type=in);
+
+
+				if ( "${forwarded_to}" == "${DIALEDPEERNUMBER}"  && "${DIALSTATUS}" = "ANSWER" ) {
+					&dial-log-store(${forwarded_to},${type},${CALLERID(num)},0);
+				}
+				else if ( "${forwarded_to}/n" == "${DIALEDPEERNUMBER}" && "${DIALSTATUS}" != "ANSWER" ) {
+					
+					if ("${forwarded_to:0:3}" == "vm*" ) {
+						&dial-log-store(${forwarded_to:3},${type},${CALLERID(num)},0);
+					}
+					else if ("${forwarded_to:0:2}" == "vm" ) {
+						&dial-log-store(${forwarded_to:2},${type},${CALLERID(num)},0);
+					}
+					else {
+						&dial-log-store(${forwarded_to},${type},${CALLERID(num)},0);
+					}
+				}
+			}
+			else if ( "${DIALEDPEERNUMBER}" == "" ) {
 				Set(type=missed);
 				if ("${DIALSTATUS}" = "ANSWER")
 					Set(type=in);
@@ -1426,7 +1448,7 @@ context to-internal-users-self {
 							&dial-log-store(${origext},${type},${CALLERID(num)},0);
 					}
 				
-				} else if ("${CHANNEL:0:5}" != "Local") {
+				} else if ("${CHANNEL:0:5}" != "Local" && "${DIALSTATUS}" = "ANSWER" ) {
 					&dial-log-store(${forwarded_to},${type},${CALLERID(num)},0);
 				}
 				else if ("${forwarded_to:0:3}" == "vm*" ) {
@@ -1436,6 +1458,7 @@ context to-internal-users-self {
 					&dial-log-store(${forwarded_to:2},${type},${CALLERID(num)},0);
 				}
 			}
+
 				
 		}
 		else if ("${exttype}" = "queue") {
