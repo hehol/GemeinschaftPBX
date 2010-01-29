@@ -387,6 +387,11 @@ macro agent-pause() {
 	Verbose(1,### DB-Stat:  ${agent_pause});
 	if ("${agent}" = "true") {
 		
+		QueueLog(NONE,${UNIQUEID},NONE,PAUSEALL,SIP/${user_name});
+		for(i=0;${i} < ${oqueue_count}; i=${i} + 1){
+			queueNr=${oqueue${i}};
+			QueueLog(${queueNr},${UNIQUEID},NONE,PAUSE,SIP/${user_name});
+		}
 		UserEvent(AgentPausedUI|agent: ${user_name});
 		Playback(beep);
 
@@ -406,6 +411,11 @@ macro agent-unpause() {
 	
 	if ("${agent}" = "true") {
 		
+		QueueLog(NONE,${UNIQUEID},NONE,UNPAUSEALL,SIP/${user_name});
+		for(i=0;${i} < ${oqueue_count}; i=${i} + 1){
+			queueNr=${oqueue${i}};
+			QueueLog(${queueNr},${UNIQUEID},NONE,UNPAUSE,SIP/${user_name});
+		}
 		UserEvent(AgentUnPausedUI|agent: ${user_name});
 
 		Playback(beep);
