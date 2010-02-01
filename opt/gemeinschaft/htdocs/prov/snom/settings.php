@@ -571,7 +571,7 @@ psetting('sip_proxy'            , $sip_proxy_and_sbc['sip_proxy_from_wan'] );
 psetting('emergency_proxy'      , $sip_proxy_and_sbc['sip_proxy_from_wan'] );
 psetting('eth_net'              , 'auto');
 psetting('eth_pc'               , 'auto');
-psetting('redirect_ringing'     , 'off' );
+psetting('redirect_ringing'     , 'on' );
 psetting('disable_blind_transfer', 'off');
 psetting('disable_deflection'   , 'off');
 psetting('watch_arp_cache'      , '1'  );  # default: 0
@@ -987,7 +987,7 @@ while ($r = $rs->fetchRow()) {
 
 
 //keys not  to rewrite for the astbuttond
-$nativekeys = Array( 'line', 'keyevent' );
+$nativekeys = Array( 'line', 'keyevent', 'transfer' );
 
 $softkeys = null;
 $GS_Softkeys = gs_get_key_prov_obj( $phone_type );
@@ -1034,7 +1034,17 @@ if (! is_array($softkeys)) {
 				break;
 			case '_transfer':
 				$key_def['function'] = 'keyevent';
-				$key_def['data'    ] = 'F_TRANSFER';
+				if ( strlen($key_def['data' ]) <= 0 )
+					$key_def['data'    ] = 'F_TRANSFER';
+				else {
+					if ( $phone_type  == 'snom-820' ) {
+						$key_def['function'] = 'transfer';
+					}
+					else {
+						$key_def['data'    ] = 'F_TRANSFER:' . $key_def['data'];
+					}
+				}
+				
 				break;
 			case '_mute':
 				$key_def['function'] = 'keyevent';
@@ -1073,25 +1083,25 @@ if (! is_array($softkeys)) {
 				
 		
 		}
+		//labels
+		$attribs = array('context'=>'active');
+		
+		if ( isset(  $key_def['label'] ) &&  strlen (  $key_def['label'] ) > 0 ) {
+			$attribs['label'] = $key_def['label'];
+		
+		}
 		
 		$key_idx = (int)lTrim(subStr($key_name,1),'0');
 		if ($key_idx > $max_key) continue;
 		//if we want to use the AstButtond we have to rewrite some keys
 		if ( GS_BUTTONDAEMON_USE == false ) {
-			setting('fkey', $key_idx, $key_def['function'] .' '. $key_def['data'], array('context'=>'active'));
+			setting('fkey', $key_idx, $key_def['function'] .' '. $key_def['data'], $attribs );
 		}
 		else {
 			if ($native_anyway ||  in_array( $key_def['function'], $nativekeys , true))
-				setting('fkey', $key_idx, $key_def['function'] .' '. $key_def['data'], array('context'=>'active'));
+				setting('fkey', $key_idx, $key_def['function'] .' '. $key_def['data'], $attribs );
 			else
 				setting('fkey', $key_idx, 'button  ' . ($key_idx + 1) , array('context'=>'active'));
-		}
-		if ( $phone_type  == 'snom-820' ) {
-			if ( isset(  $key_def['label'] ) &&  strlen (  $key_def['label'] ) > 0 ) {
-
-				setting ( 'fkey_label', $key_idx, $key_def['label'] );
-			
-			}
 		}
 	
 	}

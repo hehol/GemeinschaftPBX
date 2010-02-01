@@ -127,7 +127,7 @@ $key_functions_snom = array(
 	'dest'  => __('Nebenstelle'),       # destination (//FIXME - auch BLF hiermit machen?)
 	'blf'   => __('BLF'),               # BLF
 	'line'  => __('Leitung'),           # line
-	//'f_transfer'  => __('Weiterleiten')   # F_TRANSFER	
+	'_transfer'	=>__('Transfer-Taste'),         # Transfer-Key
 	
 );
 
@@ -135,7 +135,6 @@ $key_functions_snom = array(
 $keys_functions_snom300 = array(
 	'_dir'		=>__('Telefonbuch'),            # Telefonbuch
 	'_callers'	=>__('Anruflisten'),            # Anruflisten
-	'_transfer'	=>__('Transfer-Taste'),         # Transfer-Key
 	'_hold'		=>__('Halten-Taste'),	        # Hold-Key
 	'_menu'		=>__('Men&uuml;-Taste'),	# Menu-Key
 	'_dnd'		=>__('Ruhe/DND-Taste'),		# DND-Key
@@ -1109,7 +1108,7 @@ if ($phone_layout) {
 		
 		if ( $phone_type == 'snom-820' ) {
 			//not supportet atm
-			//$have_key_label = true;
+			$have_key_label = true;
 			//$table_cols = 6;
 		}
 		else {
