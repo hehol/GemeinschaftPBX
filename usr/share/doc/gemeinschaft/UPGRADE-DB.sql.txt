@@ -652,6 +652,16 @@ ALTER TABLE `dial_log`
 
 
 --
+-- Update table `users_outbound_numbers`, add `dest`
+--
+
+ALTER TABLE  `users_outbound_numbers`
+  ADD`dest` enum('internal','external') character set ascii NOT NULL default 'external' AFTER `number`;
+
+ALTER TABLE `users_outbound_numbers` DROP PRIMARY KEY ,
+  ADD PRIMARY KEY ( `user_id` , `number` , `dest` ) ;
+
+--
 -- Rename old table `users_outbound_numbers` to `users_callerids`
 --
 
@@ -729,6 +739,15 @@ CREATE TABLE IF NOT EXISTS `systemrecordings` (
   PRIMARY KEY  (`id`),
   KEY `md5hashname` (`md5hashname`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+--
+-- Added _sysrec_id refering to `systemrecordings`
+--
+
+ALTER TABLE `ast_queues`
+  ADD `_sysrec_id` int(10) unsigned NOT NULL default '0' AFTER `_title`;
+
 
 --
 -- Add uniqueid-field to queue_members table
