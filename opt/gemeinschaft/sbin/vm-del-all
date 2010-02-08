@@ -1,0 +1,57 @@
+#!/usr/bin/php -q
+<?php
+/*******************************************************************\
+*            Gemeinschaft - asterisk cluster gemeinschaft
+* 
+* $Revision$
+* 
+* Copyright 2007, amooma GmbH, Bachstr. 126, 56566 Neuwied, Germany,
+* http://www.amooma.de/
+*
+* Andreas Neugebauer <neugebauer@loca.net> - LocaNet oHG
+* 
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public License
+* as published by the Free Software Foundation; either version 2
+* of the License, or (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+* MA 02110-1301, USA.
+\*******************************************************************/
+
+define( 'GS_VALID', true );  /// this is a parent file
+require_once( dirName(__FILE__) .'/../inc/conf.php' );
+require_once( GS_DIR .'inc/quote_shell_arg.php' );
+require_once( GS_DIR .'inc/gs-fns/gs_vm_del_all.php' );
+
+if ($argc != 2) {
+	echo 'Usage: ', baseName($argv[0]), " <user>\n";
+	exit(1);
+}
+
+$user = trim( $argv[1] );
+
+if (! preg_match( '/^[a-z0-9\-_.]+$/', $user )) {
+	echo "ERROR: No valid username\n";
+}
+if (! $user) exit(1);
+
+$ok = gs_vm_del_all ( $user );
+
+if (isGsError($ok)) {
+        echo "ERROR: ", $ok->getMsg() ,"\n";
+        exit(1);
+}
+else {
+
+	echo "OK. Deleted.\n";
+}
+
+?>

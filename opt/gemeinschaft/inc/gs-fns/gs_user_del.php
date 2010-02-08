@@ -33,7 +33,9 @@ include_once( GS_DIR .'inc/gs-fns/gs_prov_phone_checkcfg.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_asterisks_reload.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_asterisks_prune_peer.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_hylafax_authfile.php' );
+include_once( GS_DIR .'inc/gs-fns/gs_vm_del_all.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_astphonebuttons.php' );
+
 
 /***********************************************************
 *    delete a user account
@@ -119,6 +121,12 @@ function gs_user_del( $user, $reload=true )
 	# delete mailbox settings
 	#
 	$db->execute( 'DELETE FROM `vm` WHERE `user_id`='. $user_id );
+	
+	# delete voicemails
+	#
+	
+	gs_vm_del_all ( $user );
+	
 	
 	# delete private phonebook
 	#
