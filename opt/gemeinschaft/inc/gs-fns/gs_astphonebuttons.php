@@ -329,4 +329,24 @@ function gs_buttondeamon_softkeyprofile_update( $profile )
 	}
 }
 
+function gs_buttondeamon_version( )
+{
+	$socket = fsockopen( "tcp://" . GS_BUTTONDAEMON_HOST, GS_BUTTONDAEMON_PORT, $errno, $errstr, 1 );
+
+	if ( $socket ) {
+
+		$message = "show System version" . "\n";
+
+		fwrite( $socket, $message );
+		for ( $i = 0; $i < 4; $i++ ) { 
+			$version = fgets  ( $socket );
+		}
+		fwrite( $socket, "quit\n" );
+		fclose( $socket );
+		
+		return $version ;
+	}
+	return;
+}
+
 ?>
