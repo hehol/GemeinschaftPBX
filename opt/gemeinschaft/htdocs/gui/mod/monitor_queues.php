@@ -68,6 +68,11 @@ $GS_INSTALLATION_TYPE_SINGLE = gs_get_conf('GS_INSTALLATION_TYPE_SINGLE');
 
 # get the queues for the current user
 #
+
+$GS_MONITOR_ALL = gs_get_conf('GS_GUI_QUEUE_MONITOR_ALL');
+
+if ( ! $GS_MONITOR_ALL ) {
+
 $rs_queues = $DB->execute(
 'SELECT `q`.`_id` `id`, `q`.`name` `ext`, `q`.`_title` `title`, `h`.`host`
 FROM
@@ -77,6 +82,18 @@ FROM
 WHERE `m`.`_user_id`='. (int)@$_SESSION['sudo_user']['info']['id'] .'
 ORDER BY `q`.`name`'
 );
+
+}
+else {
+
+$rs_queues = $DB->execute(
+'SELECT `q`.`_id` `id`, `q`.`name` `ext`, `q`.`_title` `title`, `h`.`host`
+FROM
+	`ast_queues` `q`  JOIN
+	`hosts` `h` ON (`h`.`id`=`q`.`_host_id`)
+ORDER BY `q`.`name`');
+
+}
 
 
 if ($rs_queues->numRows()==0) {

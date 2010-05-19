@@ -199,6 +199,9 @@ $GUI_MON_NOQUEUEBLUE        = true;
 $GUI_QUEUE_ADMINS_ENABLE   = false;
   # Enable special queue admins
 
+$GUI_QUEUE_MONITOR_ALL = false;
+
+  # All users can monitor all queues
 
 /***********************************************************
 *    EXTERNAL NUMBERS BACKEND
