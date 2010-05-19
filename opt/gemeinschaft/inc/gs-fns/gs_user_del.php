@@ -192,6 +192,10 @@ function gs_user_del( $user, $reload=true )
 	#
 	$db->execute( 'DELETE FROM `user_calldrop` WHERE `user_id`='. $user_id );
 	
+	# delete queueadmin user
+	#
+	$db->execute( 'DELETE FROM `queueadmin_users` WHERE `user_id`='. $user_id );
+	
 	
 	# delete user
 	#

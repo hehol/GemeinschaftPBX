@@ -122,6 +122,8 @@ $drop_call   = (bool)@$_REQUEST['drop_call'  ] ;
 
 $drop_number = trim(@$_REQUEST['drop_number'    ]);
 
+$queue_admin     = (bool)@$_REQUEST['qadmin'  ] ;
+
 if ($action === 'del') {
 	
 	if ($delete_user) {
@@ -183,7 +185,7 @@ if ($action === 'edit') {
 if ($action === 'save') {
 	
 	if ($edit_user) {
-		$ret = gs_user_change( $edit_user, $user_pin, $user_fname, $user_lname, $user_host, false, $user_email, true, $pb_hide, $drop_call, $drop_number );
+		$ret = gs_user_change( $edit_user, $user_pin, $user_fname, $user_lname, $user_host, false, $user_email, true, $pb_hide, $drop_call, $drop_number, $queue_admin );
 		if (isGsError( $ret )) echo '<div class="errorbox">', $ret->getMsg() ,'</div>',"\n";
 		if (! isGsError( $ret )) {
 			$boi_api = gs_host_get_api((int)$user_host);
@@ -686,12 +688,13 @@ else {
 	$rs = $DB->execute(
 'SELECT
 	`u`.`firstname` `fn`, `u`.`lastname` `ln`, `u`.`host_id` `hid`, `u`.`honorific` `hnr`, `u`.`user` `usern`, `s`.`name` `ext` , `u`.`email` `email`, `u`.`pin` `pin`, `u`.`id` `uid`, `s`.`secret`, `u`.`group_id`, `u`.`pb_hide`,
-	`hp1`.`value` `hp_route_prefix`, `d`.`drop_call`, `d`.`number`
+	`hp1`.`value` `hp_route_prefix`, `d`.`drop_call`, `d`.`number`, `q`.`admin` AS `qadmin`
 FROM
 	`users` `u` JOIN
 	`ast_sipfriends` `s` ON (`s`.`_user_id`=`u`.`id`) LEFT JOIN
 	`hosts` `h` ON (`h`.`id`=`u`.`host_id`) LEFT JOIN
 	`user_calldrop` `d` ON (`u`.`id`=`d`.`user_id`) LEFT JOIN
+	`queueadmin_users` `q` ON (`u`.`id`=`q`.`user_id`) LEFT JOIN
 	`host_params` `hp1` ON (`hp1`.`host_id`=`h`.`id` AND `hp1`.`param`=\'route_prefix\')
 WHERE
 	`u`.`user` = \''. $DB->escape($edit_user) .'\''
@@ -942,6 +945,18 @@ echo '<input type="hidden" name="page" value="', (int)$page, '" />', "\n";
 ?>
 		</td>
 	</tr>
+<?php
+	if ( GS_GUI_QUEUE_ADMINS_ENABLE ) {	
+	echo '<tr>' , "\n" ;
+		echo '<th>', __('Warteschlangen-Administrator'), ':</th>', "\n";
+		echo '<td>', "\n";
+			echo '<input type="checkbox" name="qadmin" ';
+				if ($r['qadmin'] == true) echo 'checked' ;
+			echo '/>' , "\n";
+		echo '</td>', "\n";
+	echo '</tr>', "\n";
+	}
+?>
 	<tr>
 		<th><?php echo __('Aus Telefonbuch ausblenden'); ?>:</th>
 		<td>

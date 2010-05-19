@@ -225,7 +225,7 @@ _gscnf( 'GUI_MON_PEERS_ENABLED'     , false              );
 _gscnf( 'GUI_SHUTDOWN_ENABLED'      , gs_get_conf('GS_INSTALLATION_TYPE')==='gpbx');
 _gscnf( 'GUI_LANGS'                 , 'de_DE:de_DE:de-DE:Deutsch, en_US:en_US:en-US:English' );
 _gscnf( 'GUI_ADDITIONAL_STYLESHEET' , 'gemeinschaft.css' );
-
+_gscnf( 'GUI_QUEUE_ADMINS_ENABLE'     , false              );
 _gscnf( 'EXTERNAL_NUMBERS_BACKEND'  , 'db'               );
 _gscnf( 'EXTERNAL_NUMBERS_LDAP_PROP', ''                 );
 

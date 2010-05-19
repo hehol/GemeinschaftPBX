@@ -39,7 +39,7 @@ include_once( GS_DIR .'inc/gs-fns/gs_astphonebuttons.php' );
 *    change a user account
 ***********************************************************/
 
-function gs_user_change( $user, $pin, $firstname, $lastname, $host_id_or_ip, $force=false, $email='', $reload=true, $pb_hide=false, $drop_call=false, $drop_target='' )
+function gs_user_change( $user, $pin, $firstname, $lastname, $host_id_or_ip, $force=false, $email='', $reload=true, $pb_hide=false, $drop_call=false, $drop_target='', $queue_admin=false )
 {
 	if (! preg_match( '/^[a-z0-9\-_.]+$/', $user ))
 		return new GsError( 'User must be alphanumeric.' );
@@ -59,6 +59,8 @@ function gs_user_change( $user, $pin, $firstname, $lastname, $host_id_or_ip, $fo
 		return new GsError( 'GS_EMAIL_PATTERN_VALID not defined.' );
 	if ($email != '' && ! preg_match( GS_EMAIL_PATTERN_VALID, $email ))
 		return new GsError( 'Invalid e-mail address.' );
+
+	$queue_admin = (int)$queue_admin;
 		
 	$pb_hide = (int)$pb_hide;
 	
@@ -136,6 +138,25 @@ function gs_user_change( $user, $pin, $firstname, $lastname, $host_id_or_ip, $fo
 	if (! $ok) {
 		gs_db_rollback_trans($db);
 		return new GsError( 'Failed to change user.' );
+	}
+	
+	# set queue_admin state
+	#
+	$qadmin_exists = (int)$db->executeGetOne( 'SELECT COUNT(`user_id` ) FROM `queueadmin_users` WHERE `user_id`='. $db->escape($user_id) );
+
+	if( $qadmin_exists < 1 ) {
+		$ok = $db->execute( 'INSERT INTO `queueadmin_users` ( `user_id`, `admin` ) VALUES ( ' . $db->escape($user_id) . ' ,' . $db->escape($queue_admin) . ' )');
+		if ( ! $ok ) {
+			gs_db_rollback_trans($db);
+			return new GsError( 'Failed to add  queueadmin user.' );
+		}
+	}
+	else {
+		$ok = $db->execute( 'UPDATE `queueadmin_users` SET `admin`=' . $db->escape($queue_admin) . ' WHERE `user_id`=' . $db->escape($user_id) );
+		if ( ! $ok ) {
+			gs_db_rollback_trans($db);
+			return new GsError( 'Failed to change queueadmin user.' );
+		}
 	}
 	
 	# update sip account

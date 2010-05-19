@@ -6304,6 +6304,18 @@ LOCK TABLES `prov_params` WRITE;
 /*!40000 ALTER TABLE `prov_params` ENABLE KEYS */;
 UNLOCK TABLES;
 
+-- 
+-- Tabellenstruktur für Tabelle `queueadmin_users`
+-- 
+
+DROP TABLE IF EXISTS `queueadmin_users`;
+CREATE TABLE IF NOT EXISTS `queueadmin_users` (
+  `user_id` int(10) unsigned NOT NULL,
+  `admin` tinyint(1) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+      
+
 --
 -- Table structure for table `queue_callforwards`
 --

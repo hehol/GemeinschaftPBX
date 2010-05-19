@@ -253,7 +253,14 @@ if (gs_get_conf('GS_BOI_ENABLED')
 	}
 }
 
-
+##	Test if user is queueadmin
+#
+if ( GS_GUI_QUEUE_ADMINS_ENABLE )  {
+	$queue_admin = $DB->executeGetOne( 'SELECT `admin` FROM `queueadmin_users` WHERE `user_id`='. (int)$_SESSION['sudo_user']['info']['id'] );
+}
+else {
+	$queue_admin = 0;
+}
 # get section & module
 #
 if (! array_key_exists($SECTION, $MODULES)
@@ -273,14 +280,15 @@ if (! array_key_exists($MODULE, $MODULES[$SECTION]['sub'])) {
 	$SECTION = 'home';
 	$MODULE  = '';
 }
-
 if (array_key_exists('perms', $MODULES[$SECTION])
 &&  $MODULES[$SECTION]['perms'] === 'admin'
 &&  !(preg_match('/\\b'.(@$_SESSION['sudo_user']['name']).'\\b/', GS_GUI_SUDO_ADMINS)) )
 {
-	//_not_allowed( 'You are not an admin.' );
-	$SECTION = 'home';
-	$MODULE  = 'home';
+	if ( !( array_key_exists('queueadmin', $MODULES[$SECTION] ) &&  $queue_admin >= 1) ) {
+		//_not_allowed( 'You are not an admin.' );
+		$SECTION = 'home';
+		$MODULE  = 'home';
+	}
 }
 if ($_SESSION['sudo_user']['boi_host_id'] > 0
 &&  $_SESSION['sudo_user']['boi_role'] !== 'gs'
@@ -289,6 +297,7 @@ if ($_SESSION['sudo_user']['boi_host_id'] > 0
 	$SECTION = 'home';
 	$MODULE  = 'home';
 }
+
 
 if (@array_key_exists('is_boi', @$MODULES[$SECTION])
 &&  @$MODULES[$SECTION]['is_boi']) {
@@ -503,15 +512,18 @@ foreach ($MODULES as $sectname => $sectinfo) {
 	}
 	
 	if (@$_SESSION['sudo_user']['name'] !== 'sysadmin') {
+	
 		if (array_key_exists('perms', $sectinfo)
 		&&  $sectinfo['perms'] === 'admin'
 		&&  (@$_SESSION['sudo_user']['name'] == ''
 		|| ! preg_match('/\\b'.(@$_SESSION['sudo_user']['name']).'\\b/', GS_GUI_SUDO_ADMINS)
 		)) {
-			continue;
+			if ( ! (array_key_exists('queueadmin', $sectinfo ) && $queue_admin) ){
+				continue;
+			}
 		}
 	} else {
-		if (@$sectinfo['perms'] !== 'admin'
+  		if (@$sectinfo['perms'] !== 'admin'
 		&&  ! in_array($sectname, array('home','login','logout'), true)) {
 			continue;
 		}
@@ -529,6 +541,17 @@ foreach ($MODULES as $sectname => $sectinfo) {
 			if (array_key_exists('inmenu', $modinfo) && ! $modinfo['inmenu']) {
 				continue;
 			}
+			
+			if (array_key_exists('perms', $sectinfo)
+			&&  $sectinfo['perms'] === 'admin'
+			&&  (@$_SESSION['sudo_user']['name'] == ''
+			|| ! preg_match('/\\b'.(@$_SESSION['sudo_user']['name']).'\\b/', GS_GUI_SUDO_ADMINS)
+			)) {
+				if (!(array_key_exists('queueadmin', $modinfo ) && $queue_admin) ){
+					continue;
+				}
+			}
+			
 			echo '<li class="leaf"><a href="', gs_url($sectname, $modname) ,'" class="';
 			if ($modname == $MODULE) echo 'active';
 			echo '"';

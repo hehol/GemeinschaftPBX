@@ -196,6 +196,8 @@ $GUI_MON_NOQUEUEBLUE        = true;
 
 //$GUI_ADDITIONAL_STYLESHEET  = 'gemeinschaft.css';
 
+$GUI_QUEUE_ADMINS_ENABLE   = false;
+  # Enable special queue admins
 
 
 /***********************************************************
