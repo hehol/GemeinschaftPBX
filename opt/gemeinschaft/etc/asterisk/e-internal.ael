@@ -1083,6 +1083,19 @@ context to-internal-users-self {
 			// sets fw_*_* and ring_instead_of_moh
 			// and queue_displayname
 			
+			AGI(/opt/gemeinschaft/dialplan-scripts/in-get-callername.agi,0,${CALLERID(num)},${is_call_from});
+
+			if( "${forwarded_by}" != "" ) {
+                                if( "${CALLERID(name)}" = "" ) {
+					Set(CALLERID(name)=${CALLERID(num)});
+				}
+				Set(CALLERID(name)=[${EXTEN} - ${queue_displayname}] ${CALLERID(name)} >> ${forwarded_by} ${forwarded_by_name});
+                        }
+			else {
+				Set(CALLERID(name)=[${EXTEN} - ${queue_displayname}] ${CALLERID(name)});
+			}
+
+
 			// forward (case=always) active?
 			if ("${fw_${is_call_from}_always}" != "") {
 				Verbose(1,### Called queue: ${EXTEN} - always forward to: ${fw_${is_call_from}_always});
@@ -1107,20 +1120,6 @@ context to-internal-users-self {
 				Verbose(1,### Enter local queue ${EXTEN}\, timeout: none);
 			}
 			
-			//Set(CALLERID(name)=Queue ${EXTEN});
-			//Set(CALLERID(name)=Q${EXTEN} ${CALLERID(name)});
-			AGI(/opt/gemeinschaft/dialplan-scripts/in-get-callername.agi,0,${CALLERID(num)},${is_call_from});
-
-			if( "${forwarded_by}" != "" ) {
-                                if( "${CALLERID(name)}" = "" ) {
-					Set(CALLERID(name)=${CALLERID(num)});
-				}
-				Set(CALLERID(name)=[${queue_displayname}] ${CALLERID(name)} >> ${forwarded_by} ${forwarded_by_name});
-                        }
-			else {
-				Set(CALLERID(name)=[${queue_displayname}] ${CALLERID(name)});
-			}
-
 			if ("${CALLERID(num)}" = "")
 				Set(CALLERID(num)=${EXTEN});
 			
