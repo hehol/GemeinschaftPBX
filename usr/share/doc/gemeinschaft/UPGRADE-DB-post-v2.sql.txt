@@ -112,3 +112,11 @@ CREATE TABLE IF NOT EXISTS `queueadmin_users` (
   `admin` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+-- 
+--  Add `penalty` to table table `agent_queues`
+--
+
+ALTER TABLE `agent_queues` 
+ ADD `penalty` TINYINT( 3 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `queue_id` ;

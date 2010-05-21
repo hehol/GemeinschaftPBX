@@ -80,7 +80,7 @@ if ($action != 'logoutall') {
 	
 	# get queue
 	#
-	$rs = $db->execute( 'SELECT `agent_queues`.`queue_id`, `ast_queues`.`_host_id` `host_id`, `ast_queues`.`name` FROM `agent_queues`, `ast_queues` WHERE `ast_queues`.`_id` = `agent_queues`.`queue_id`  AND `agent_id`=\''. $db->escape($agent_id) .'\'' );
+	$rs = $db->execute( 'SELECT `agent_queues`.`queue_id`, `agent_queues`.`penalty`, `ast_queues`.`_host_id` `host_id`, `ast_queues`.`name` FROM `agent_queues`, `ast_queues` WHERE `ast_queues`.`_id` = `agent_queues`.`queue_id`  AND `agent_id`=\''. $db->escape($agent_id) .'\'' );
 	if(! @$rs){
 		echo 'SET VARIABLE agent_login_status '. gs_agi_str_esc('no queues found') ."\n";
 		die();
@@ -90,7 +90,8 @@ if ($action != 'logoutall') {
 		$queue_id = (int)$queue['queue_id'];
 		$host_id = (int)$queue['host_id'];
 		$name = $queue['name'];
-		$queue_set[] = array('id'=>$queue_id, 'host'=>$host_id, 'name'=>$name);
+		$penalty = (int)$queue['penalty'];
+		$queue_set[] = array('id'=>$queue_id, 'host'=>$host_id, 'name'=>$name, 'penalty' => $penalty );
 	
 	}
 	if(count($queue_set) < 1){
@@ -119,7 +120,7 @@ if ($action === 'login') {
 	}
 	
 	foreach($queue_set as $aqueue){
-		$db->execute( 'INSERT INTO `ast_queue_members` (`queue_name`, `_queue_id`, `interface`, `_user_id`) VALUES (\''. $db->escape($aqueue['name']) .'\', '. $aqueue['id'] .', \''. $db->escape( 'SIP/'. $user ) .'\', '. $user_id .')' );
+		$db->execute( 'INSERT INTO `ast_queue_members` (`queue_name`, `_queue_id`, `interface`, `penalty`, `_user_id`) VALUES (\''. $db->escape($aqueue['name']) .'\', '. $aqueue['id'] .', \''. $db->escape( 'SIP/'. $user ) .'\', '. $db->escape($aqueue['penalty']) .', ' . $user_id .')' );
 		echo 'SET VARIABLE agent_login_status '. gs_agi_str_esc('loggedin') ."\n";
 		//fFlush(STDOUT); // <- do not use. not defined in php-cgi!
 	}
