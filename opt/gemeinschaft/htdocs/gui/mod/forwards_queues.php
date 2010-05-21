@@ -35,8 +35,14 @@ include_once( GS_DIR .'inc/gs-fns/gs_queues_get.php' );
 
 $admins =  split(',',GS_GUI_SUDO_ADMINS);
 
+$queue_admin = 0;
+
+if ( GS_GUI_QUEUE_ADMINS_ENABLE )  {
+	$queue_admin = $DB->executeGetOne( 'SELECT `admin` FROM `queueadmin_users` WHERE `user_id`='. (int)$_SESSION['sudo_user']['info']['id'] );
+}
+
 array_walk($admins, 'gs_trim_value');
-if(!in_array($_SESSION[sudo_user][name], $admins)){
+if( !in_array($_SESSION['sudo_user']['name'], $admins)  && $queue_admin <= 0 ){
 	die(__('Nur Administratoren d&uuml;rfen hier &Auml;nderungen vornehmen!'));
 }
 
