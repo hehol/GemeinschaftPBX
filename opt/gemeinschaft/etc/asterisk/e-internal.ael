@@ -570,6 +570,8 @@ context to-internal-users-self {
 		
 		Verbose(1,### Incoming call to ${EXTEN} at this node);
 		
+		Set(last_exten=${EXTEN});
+
 		//if ("${saved_callerid}" != "") {
 		//	// __saved_callerid is set by call-init.php
 		//	Set(CALLERID(all)=${saved_callerid});
@@ -1347,7 +1349,9 @@ context to-internal-users-self {
  		Verbose(1,###### CALLERID(num)  : ${CALLERID(num)});
  		Verbose(1,###### origext        : ${origext});
  		Verbose(1,###### user_name      : ${user_name});
+		Verbose(1,###### forwarded_by   : ${forwarded_by});
  		Verbose(1,###### forwarded_to   : ${forwarded_to});
+		Verbose(1,###### last_exten     : ${last_exten});
  		Verbose(1,###### CHANNEL        : ${CHANNEL});
 		Verbose(1,###### DIALEDPEERNUMBER      : ${DIALEDPEERNUMBER});
 		*/
@@ -1423,7 +1427,7 @@ context to-internal-users-self {
 							&dial-log-store(${origext},${type},${CALLERID(num)},0);
 					}
 				
-				} else if ("${CHANNEL:0:5}" != "Local") {
+				} else if ( "${forwarded_to:0:2}" != "vm" ) {
 					if ( "${type}" == "missed" && "${fw_parcallexten_1}" != "" ) {
 
 
@@ -1434,7 +1438,7 @@ context to-internal-users-self {
 						}
 
 					}
-					else {
+					else if ( "${forwarded_to}" ==  "${last_exten}" ) {
 						&dial-log-store(${forwarded_to},${type},${CALLERID(num)},0);
 					}
 				}
@@ -1448,11 +1452,18 @@ context to-internal-users-self {
 				
 		}
 		else if ("${exttype}" = "queue") {
+
+			Set(queue=${origext});
+			
+			if ( "${forwarded_to}" != "" ) {
+				Set(queue=${forwarded_to});
+			}
+
 			if("${MEMBERINTERFACE}" = "") {
 				Verbose(1,### Queue ${CALLERID(dnid)} call ${CALLERID(num)} no answer);
 				Set(member=1);
 				while ("${qm_${member}}" != "") {
-					&dial-log-store(${qm_${member}},missed,${CALLERID(num)},${origext});
+					&dial-log-store(${qm_${member}},missed,${CALLERID(num)},${queue});
 					member=${member}+1;
 				}
 			}
@@ -1461,7 +1472,7 @@ context to-internal-users-self {
 				Set(member=1);
 				while ("${qm_${member}}" != "") {
 					if("${MEMBERINTERFACE}" = "SIP/${qm_${member}}") {
-						&dial-log-store(${qm_${member}},in,${CALLERID(num)},${origext});
+						&dial-log-store(${qm_${member}},in,${CALLERID(num)},${queue});
 					}
 					member=${member}+1;
 				}
