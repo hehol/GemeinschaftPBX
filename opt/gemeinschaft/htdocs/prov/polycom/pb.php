@@ -31,6 +31,11 @@ define("GS_VALID", true); // this is a parent file
 require_once(dirname(__FILE__) ."/../../../inc/conf.php");
 include_once(GS_DIR ."inc/db_connect.php");
 include_once(GS_DIR ."inc/gettext.php");
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
+=======
+include_once(GS_DIR ."inc/langhelper.php");
+include_once(GS_DIR ."inc/group-fns.php");
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 
 header("Content-Type: text/html; charset=utf-8");
 header("Expires: 0");
@@ -70,9 +75,9 @@ function _err($msg = "")
 function getUserID($ext)
 {
 	global $db;
-	
+
 	if(!preg_match("/^\d+$/", $ext)) _err("Invalid username");
-	
+
 	$user_id = (int) $db->executeGetOne("SELECT `_user_id` FROM `ast_sipfriends` WHERE `name`='". $db->escape($ext) ."'");
 	if($user_id < 1) _err("Unknown user");
 	return $user_id;
@@ -97,13 +102,31 @@ $querystring = trim(@$_REQUEST["q"]);
 
 $db = gs_db_slave_connect();
 
+$user = trim(@$_REQUEST['u']);
+$user_id = getUserID($user);
+
+// setup i18n stuff
+gs_setlang(gs_get_lang_user($db, $user, GS_LANG_FORMAT_GS));
+gs_loadtextdomain( 'gemeinschaft-gui' );
+gs_settextdomain( 'gemeinschaft-gui' );
+
 $tmp = array(
 	15 => array(
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 		"k" => "gs",
 		"v" => gs_get_conf("GS_PB_INTERNAL_TITLE", __("Intern"))),
+=======
+		'k' => 'gs',
+		'v' => gs_get_conf('GS_PB_INTERNAL_TITLE', __("Intern"))),
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	25 => array(
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 		"k" => "prv",
 		"v" => gs_get_conf("GS_PB_PRIVATE_TITLE" , __("Pers\xC3\xB6nlich")))
+=======
+		'k' => 'prv',
+		'v' => gs_get_conf('GS_PB_PRIVATE_TITLE' , __("Pers\xC3\xB6nlich")))
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 );
 
 if(gs_get_conf("GS_PB_IMPORTED_ENABLED"))
@@ -126,10 +149,19 @@ $url_polycom_pb = GS_PROV_SCHEME ."://". GS_PROV_HOST . (GS_PROV_PORT ? ":". GS_
 #################################### INITIAL SCREEN {
 if(!$type)
 {
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	$mac = preg_replace("/[^\dA-Z]/", "", strToUpper(trim(@$_REQUEST["m"])));
 	$user = trim(@$_REQUEST["u"]);
 	$user_id = getUserID($user);
 	
+=======
+	$mac = preg_replace('/[^\dA-Z]/', '', strToUpper(trim(@$_REQUEST['m'])));
+
+	$user_groups = gs_group_members_groups_get(array($user_id), "user");
+	$permission_groups = gs_group_permissions_get($user_groups, "phonebook_user");
+	$group_members = gs_group_members_get($permission_groups);
+
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	ob_start();
 
 
@@ -178,7 +210,6 @@ if(!$type)
 if($searchform === 1)
 {
 	$mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["m"])));
-	$user = trim(@$_REQUEST["u"]);
 
 	ob_start();
 
@@ -195,11 +226,11 @@ if($searchform === 1)
 
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"1\" width=\"100%\">\n";
 	echo "<tr>";
-	echo "<th align=\"center\" width=\"100%\">Telefonbuch '". $typeToTitle[$type] ."' durchsuchen:</th>";
+	echo "<th align=\"center\" width=\"100%\">". __("Telefonbuch") ." '". $typeToTitle[$type] ."' ". __("durchsuchen") .":</th>";
 	echo "</tr>";
 
 	echo "<tr><td align=\"center\" width=\"100%\"><input type=\"text\" name=\"q\" /></td></tr>\n";
-	echo "<tr><td align=\"center\" width=\"100%\"><input type=\"submit\" value=\" Finden \" /></td></tr>\n";
+	echo "<tr><td align=\"center\" width=\"100%\"><input type=\"submit\" value=\" ". __("Finden") ." \" /></td></tr>\n";
 	echo "</table>\n";
 
 	echo "</form>\n";
@@ -218,7 +249,7 @@ $num_results = (int) gs_get_conf("GS_POLYCOM_PROV_PB_NUM_RESULTS", 10);
 if($type === "imported")
 {
 	// we don't need $user for this
-	
+
 	ob_start();
 
 	echo $phonebook_doctype ."\n";
@@ -252,8 +283,8 @@ if($type === "imported")
 
 		echo "<tr>";
 
-		echo "<th width=\"50%\">Name</th>";
-		echo "<th width=\"50%\">Nummer</th></tr>\n";
+		echo "<th width=\"50%\">". __("Name") ."</th>";
+		echo "<th width=\"50%\">". __("Nummer") ."</th></tr>\n";
 
 		while($r = $rs->fetchRow())
 		{
@@ -276,9 +307,9 @@ if($type === "imported")
 
 	echo "</body>\n";
 
-	echo "<softkey index=\"1\" label=\"Zur\xC3\xBCck\" action=\"Softkey:Back\" />\n";
+	echo "<softkey index=\"1\" label=\"". __("Zur\xC3\xBCck") ."\" action=\"Softkey:Back\" />\n";
 	echo "<softkey index=\"2\" label=\"\" action=\"\" />\n";
-	echo "<softkey index=\"3\" label=\"Beenden\" action=\"Softkey:Exit\" />\n";
+	echo "<softkey index=\"3\" label=\"". __("Beenden") ."\" action=\"Softkey:Exit\" />\n";
 	echo "<softkey index=\"4\" label=\"\" action=\"\" />\n";
 	echo "</html>\n";
 
@@ -293,8 +324,17 @@ if($type === "imported")
 
 if($type === "gs")
 {
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	// we don't need $user for this
 	
+=======
+	$mac = preg_replace("/[^\dA-Z]/", "", strToUpper(trim(@$_REQUEST["m"])));
+
+	$user_groups = gs_group_members_groups_get(array($user_id), "user");
+	$permission_groups = gs_group_permissions_get($user_groups, "phonebook_user");
+	$group_members = gs_group_members_get($permission_groups);
+
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	ob_start();
 
 	echo $phonebook_doctype ."\n";
@@ -334,8 +374,8 @@ if($type === "gs")
 
 		echo "<tr>";
 
-		echo "<th width=\"50%\">Name</th>";
-		echo "<th width=\"50%\">Nummer</th></tr>\n";
+		echo "<th width=\"50%\">". __("Name") ."</th>";
+		echo "<th width=\"50%\">". __("Nummer") ."</th></tr>\n";
 
 		while($r = $rs->fetchRow())
 		{
@@ -358,9 +398,9 @@ if($type === "gs")
 
 	echo "</body>\n";
 
-	echo "<softkey index=\"1\" label=\"Zur\xC3\xBCck\" action=\"Softkey:Back\" />\n";
-	echo "<softkey index=\"2\" label=\"Suchen\" action=\"Softkey:Fetch;". $url_polycom_pb ."?u=". $user ."&amp;m=". $mac ."&amp;t=". $type ."&amp;searchform=1\" />\n";
-	echo "<softkey index=\"3\" label=\"Beenden\" action=\"Softkey:Exit\" />\n";
+	echo "<softkey index=\"1\" label=\"". __("Zur\xC3\xBCck") ."\" action=\"Softkey:Back\" />\n";
+	echo "<softkey index=\"2\" label=\"". __("Suchen") ."\" action=\"Softkey:Fetch;". $url_polycom_pb ."?u=". $user ."&amp;m=". $mac ."&amp;t=". $type ."&amp;searchform=1\" />\n";
+	echo "<softkey index=\"3\" label=\"". __("Beenden") ."\" action=\"Softkey:Exit\" />\n";
 	echo "<softkey index=\"4\" label=\"\" action=\"\" />\n";
 	echo "</html>\n";
 
@@ -375,9 +415,7 @@ if($type === "gs")
 if($type === "prv")
 {
 	$mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["m"])));
-	$user = trim(@$_REQUEST["u"]);
-	$user_id = getUserID($user);
-	
+
 	ob_start();
 
 	echo $phonebook_doctype ."\n";
@@ -397,15 +435,28 @@ if($type === "prv")
 	echo "<html>\n";
 	echo "<head><title>". $pagetitle ."</title></head>\n";
 	echo "<body><br />\n";
-	
+
 	$user_id_check = $db->executeGetOne("SELECT `user_id` FROM `phones` WHERE `mac_addr`='". $db->escape($mac) ."'");
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	if($user_id != $user_id_check) _err("Not authorized");
 	
+=======
+	if ($user_id != $user_id_check)
+		_err("Not authorized");
+
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	$remote_addr = @$_SERVER["REMOTE_ADDR"];
 	$remote_addr_check = $db->executeGetOne("SELECT `current_ip` FROM `users` WHERE `id`=". $user_id);
+<<<<<<< HEAD:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 	if($remote_addr != $remote_addr_check) _err("Not authorized");
 	
 	$query = 
+=======
+	if ($remote_addr != $remote_addr_check)
+		_err("Not authorized");
+
+	$query =
+>>>>>>> 549c1bf... I18N enhancements for Polycom provisioning:opt/gemeinschaft/htdocs/prov/polycom/pb.php
 		"SELECT `lastname` `ln`, `firstname` `fn`, `number` ".
 		"FROM ".
 		"  `pb_prv` ".
@@ -422,8 +473,8 @@ if($type === "prv")
 
 		echo "<tr>";
 
-		echo "<th width=\"50%\">Name</th>";
-		echo "<th width=\"50%\">Nummer</th></tr>\n";
+		echo "<th width=\"50%\">". __("Name") ."</th>";
+		echo "<th width=\"50%\">". __("Nummer") ."</th></tr>\n";
 
 		while($r = $rs->fetchRow())
 		{
@@ -438,7 +489,7 @@ if($type === "prv")
 			echo "</tr>\n";
 		}
 
-		echo "</table>\n";		
+		echo "</table>\n";
 	}
 	else
 	{
@@ -447,12 +498,12 @@ if($type === "prv")
 
 	echo "</body>\n";
 
-	echo "<softkey index=\"1\" label=\"Zur\xC3\xBCck\" action=\"Softkey:Back\" />\n";
-	echo "<softkey index=\"2\" label=\"Suchen\" action=\"Softkey:Fetch;". $url_polycom_pb ."?u=". $user ."&amp;m=". $mac ."&amp;t=". $type ."&amp;searchform=1\" />\n";
-	echo "<softkey index=\"3\" label=\"Beenden\" action=\"Softkey:Exit\" />\n";
+	echo "<softkey index=\"1\" label=\"". __("Zur\xC3\xBCck") ."\" action=\"Softkey:Back\" />\n";
+	echo "<softkey index=\"2\" label=\"". __("Suchen") ."\" action=\"Softkey:Fetch;". $url_polycom_pb ."?u=". $user ."&amp;m=". $mac ."&amp;t=". $type ."&amp;searchform=1\" />\n";
+	echo "<softkey index=\"3\" label=\"". __("Beenden") ."\" action=\"Softkey:Exit\" />\n";
 	echo "<softkey index=\"4\" label=\"\" action=\"\" />\n";
 	echo "</html>\n";
-		
+
 	_ob_send();
 }
 
