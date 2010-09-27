@@ -244,7 +244,6 @@ else
 	echo '<softkey index="1" label="', __("Leeren"), '" action="Softkey:Fetch;'. $url_polycom_dl .'?user='. $user .'&amp;type='. $type .'&amp;delete=1" />',"\n";
 	echo '<softkey index="2" label="', __("Beenden"), '" action="Softkey:Exit" />',"\n";
 	echo '</html>',"\n";
-	echo "</html>\n";
 	
 	if($type == "missed")
 	{
