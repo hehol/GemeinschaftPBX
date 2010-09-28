@@ -7,7 +7,7 @@
 * Copyright 2007, amooma GmbH, Bachstr. 126, 56566 Neuwied, Germany,
 * http://www.amooma.de/
 *
-* Andreas Neugebauer <neugebauer@loca.net> Locanet oHG
+* Author: Andreas Neugebauer <neugebauer@loca.net> LocaNet oHG
 * 
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License
