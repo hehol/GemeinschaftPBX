@@ -1,6 +1,18 @@
 USE `asterisk`;
 
 --
+-- Update `callforwards`
+--
+
+ALTER TABLE `callforwards` CHANGE
+ `active` `active` ENUM( 'no', 'std', 'var', 'vml', 'ano', 'trl', 'par' ) 
+ CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL DEFAULT 'no';
+ 
+ALTER TABLE `callforwards`
+ ADD `vm_rec_id` INT( 10 ) UNSIGNED NULL DEFAULT NULL  AFTER `number_vml`;
+
+
+--
 -- Update table `ast_sipfriends` and view `ast_sipfriends_gs`
 --
 
