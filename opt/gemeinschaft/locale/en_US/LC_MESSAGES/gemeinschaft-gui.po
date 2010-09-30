@@ -1,248 +1,308 @@
-# File: opt/gemeinschaft/htdocs/prov/tiptel/settings.php:1048
-msgid "Anruf Listen"
-msgstr "Call logs"
-
-# File: opt/gemeinschaft/htdocs/prov/tiptel/dial-log.php:230
-msgid "Keine Einträge"
-msgstr "No entries"
-
-# File: opt/gemeinschaft/htdocs/prov/tiptel/dial-log.php:219
-# File: opt/gemeinschaft/htdocs/prov/tiptel/pb.php:307
-msgid "Wählen"
-msgstr "Dial"
-
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:245
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:325
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:407
-#, php-format
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
-"Keine Treffer für \"%s\". Drücken Sie 'Zurück', um eine neue Suche "
-"auszuführen."
-msgstr "No matches for \"%s\". Press 'Back' to perform a new search."
-
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:213
-msgid "Finden"
-msgstr "Find"
-
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:209
-msgid "durchsuchen"
-msgstr "search"
-
-# File: opt/gemeinschaft/htdocs/prov/polycom/main.php:113
-msgid "Telefonmenü"
-msgstr "Telephone menu"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_outbound.php:515
-msgid ""
-"Pr&auml;fix f&uuml;r LCR (Least Cost Routing) in der Form 010<i>xx</i>. Wird "
-"bei ISDN automatisch vor die Rufnummer gesetzt, bei SIP nur an Stelle von "
-"<code>{prefix}</code> im Dialstring."
 msgstr ""
-"Prefix for LCR (Least cost routing) in format 010<i>xx</i>. On ISDN/BRI it "
-"will be automatically put in front of the dialed number, for SIP only "
-"instead of <code>{prefix}</code> in the dial string."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:485
-msgid "http://www.das-asterisk-buch.de/2.1/iax.html"
-msgstr "http://www.voip-info.org/wiki/view/IAX"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:479
-#, php-format
-msgid ""
-"Mit Angabe des Ports (Standard-IAX-Port: %s) wird direkt dieser Port "
-"verwendet."
-msgstr "By entering the port (default IAX port: %s) it will be directly used."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:476
-msgid ""
-"Plaintext: Diese Methode ist sehr unsicher, da das Passwort im Klartext "
-"übertragen wird. Sie sollte daher nicht verwendet werden.<br />MD5: In "
-"diesem Challenge/Response Verfahren wird eine MD5-Prüfsumme übertragen."
-msgstr ""
-"Plaintext: This method is very insecure, as the password is transmitted "
-"unencrypted in plain text, so that should not be used.<br />MD5: Challenge/"
-"Response with MD5 checksum will be transmitted."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:393
-msgid "Trunk"
-msgstr "Trunk"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:377
-msgid "Jitterbuffer"
-msgstr "Jitter buffer"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:305
-msgid "Authentifizierung"
-msgstr "Authentication"
+"Project-Id-Version: Gemeinschaft, file $Revision$\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-23 15:04+0200\n"
+"PO-Revision-Date: 2010-09-30 12:36+0200\n"
+"Last-Translator: Daniel Scheller <scheller@loca.net>\n"
+"Language-Team: English <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #
-# File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php, line: 173
-# File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php:266
-msgid ""
-"Das Snom unterst&uuml;tzt Ringer 1-5 und lautlos.<br /> F&uuml;r das Snom "
-"kann nur entweder f&uuml;r interne oder f&uuml;r externe Anrufe eine eigene "
-"Klingeltondatei eingestellt sein, nicht f&uuml;r beides. Die L&auml;nge wird "
-"auf wenige Sekunden begrenzt."
-msgstr ""
-"Snom phones support ringer 1-5 and quiet.<br />For snom phones, custom ring "
-"tones can only be used for either internal or external calls, not for both. "
-"Length will be limited to a few seconds."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:744
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:753
-msgid "durch."
-msgstr "avg."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:741
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:750
-msgid "min."
-msgstr "min."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:738
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:747
-msgid "max."
-msgstr "max."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:706
-msgid "Agentenanzeige"
-msgstr "Agent display"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:702
-msgid "Sprachzeit"
-msgstr "Speak time"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:635
-msgid "Horiz. Warteschlangen"
-msgstr "Horiz. Queues"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:585
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:587
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:859
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:861
-msgid "Zur&uuml;ck"
-msgstr "Back"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:562
-msgid "Intern+eXtern"
-msgstr "internal+external"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:561
-msgid "eXtern"
-msgstr "eXternal"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:552
-msgid "gek&uuml;rzt"
-msgstr "shortened"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:551
-msgid "fett+kursiv"
-msgstr "bold+italic"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:549
-msgid "kursiv"
-msgstr "italic"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:539
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:835
-msgid "V.N."
-msgstr "F.N."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:538
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:834
-msgid "V. Name"
-msgstr "F. Lastname"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:537
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:833
-msgid "Name, V."
-msgstr "Lastname, F."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:536
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:832
-msgid "Name, Vorname"
-msgstr "Lastname, Firstname"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:535
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:831
-msgid "Vorname Name"
-msgstr "Firstname Lastname"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:526
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:550
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:822
-msgid "fett"
-msgstr "bold"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:525
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:548
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:821
-msgid "normal"
-msgstr "normal"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:493
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:762
-msgid "Namensanzeige"
-msgstr "Name display"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:470
-msgid "Benutzerdaten"
-msgstr "User data"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:467
-msgid "Nebenstellen"
-msgstr "Extensions"
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 167
+msgid "d.m.Y, H:i T"
+msgstr "Y-m-d, h:i A T"
 
 #
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 217
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:461
-msgid "Benutzergruppen"
-msgstr "User groups"
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 168
+msgid "Sie finden die Voicemail im Anhang dieser Email."
+msgstr "Find the voicemail message attached."
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:437
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:663
-msgid "Farben"
-msgstr "Colours"
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 152
+#, php-format
+msgid "Neue Voicemail von %s"
+msgstr "New voicemail message from %s"
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:428
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:654
-msgid "Reload Interval"
-msgstr "Reload interval"
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 155
+#, php-format
+msgid "Hallo %s!"
+msgstr "Hello %s!"
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:422
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:648
-msgid "Sec."
-msgstr "Sec."
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 184
+#, php-format
+msgid "Es befindet sich jetzt %d neue Voicemail in Ihrer Mailbox."
+msgstr "There is now %d new voicemail message in your mailbox."
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:418
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:644
-msgid "Update Interval"
-msgstr "Update interval"
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 175
+#, php-format
+msgid "Es befinden sich jetzt %d neue Voicemails in Ihrer Mailbox."
+msgstr "There are now %d new voicemail messages in your mailbox."
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:409
-msgid "Horiz. Gruppen"
-msgstr "Horiz. groups"
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 158
+#, php-format
+msgid "Eine neue Voicemail von %s\\nist für Sie eingegangen."
+msgstr "You have received a new voicemail message from\\n%s."
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:403
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:481
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:484
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:629
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:717
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:720
-msgid "Pixel"
-msgstr "Pixel"
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 181
+msgid "Dies ist eine automatisierte Nachricht. Bitte antworten Sie nicht."
+msgstr "This is an automated-generated message. Please do not answer."
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:386
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:612
-msgid "Anzeigeoptionen"
-msgstr "Display options"
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 162
+#, php-format
+msgid "Die Voicemail erreichte Sie auf Durchwahl %s."
+msgstr "You received this voicemail message on extension %s."
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:258
-msgid "Umleitung aktiv"
-msgstr "Call forward active"
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_users.php, line: 710
+msgid "Benutzergruppe"
+msgstr "User group"
 
-# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:252
-msgid "anruf"
-msgstr "call"
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_outbound.php, line: 237
+msgid "Benutzer-Gr."
+msgstr "User grp."
+
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 182
+#, php-format
+msgid "%s auf \"%s\""
+msgstr "%s on \"%s\""
+
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 176
+#, php-format
+msgid "%d Sek."
+msgstr "%d sec."
+
+#
+# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 175
+#, php-format
+msgid "%d Min. %d Sek."
+msgstr "%d min. %d sec."
+
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:144
+msgid "QueueMon"
+msgstr "QueueMon"
+
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:145
+msgid "PeerMon"
+msgstr "PeerMon"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 93
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 108
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:253
+msgid "Snom"
+msgstr "Snom"
+
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:318
+msgid "IAX-Gateways"
+msgstr "IAX gateways"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:220
+msgid "Warteschlange und Agent sind nicht auf dem gleichen Host!"
+msgstr "Queue and agent are not on the same host!"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:247
+msgid "User oder Warteschlange ung&uuml;ltig!"
+msgstr "User or Queue invalid!"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:463
+msgid "Min. Agentenzahl"
+msgstr "Min. # agents"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:582
+msgid "Warteschlangengruppen"
+msgstr "Queue groups"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:642
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:643
+msgid "Statische"
+msgstr "Static"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:643
+msgid "sind immer an der Warteschlange angemeldet."
+msgstr "are always logged in to the queue."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:646
+# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:231
+msgid "Verf&uuml;gbare"
+msgstr "Available"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:647
+msgid "Angemeldete"
+msgstr "Logged in"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_sysrecs.php:298
+msgid "Die Audiodatei existiert bereits!"
+msgstr "The audio file already exists!"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_sysrecs.php:383
+msgid ""
+"Audiodatei kann nicht gel&ouml;scht werden da in Verwendung von "
+"Warteschlange <b>"
+msgstr "Could not delete audio file, it is in use in queue <b>"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_users.php:1371
+msgid "Vorhandene Skills"
+msgstr "Available skills"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/admin_users.php:1374
+msgid "Skill"
+msgstr "Skill"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:236
+msgid ""
+"Mehrfachauswahl mit gedr&uuml;ckter <q>STRG</q> oder <q>SHIFT</q> Taste "
+"m&ouml;glich."
+msgstr ""
+"Multi-select possible by pressing and holding <q>STRG</q> or <q>SHIFT</q> "
+"key."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:260
+# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:261
+msgid "Anmelden"
+msgstr "Log in"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:267
+# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:268
+msgid "Abmelden"
+msgstr "Log out"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php, line: 73
+# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php, line: 130
+# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php:200
+# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php:303
+msgid ""
+"Sie sollten eine Std.-Umleitungsnummer angeben! Sie wird f&uuml;r die Nicht-"
+"St&ouml;ren-Funktion am Telefon ben&ouml;tigt."
+msgstr "You should set a default number! It is required for DND."
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 52
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:56
+msgid ""
+"Einloggen an einem Telefon. Dabei wird die Eingabe der PIN-Nummer verlangt."
+msgstr "Login at a phone. Asks you to enter your PIN number."
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 58
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:62
+msgid "Ausloggen"
+msgstr "Logout"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 75
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:79
+msgid ""
+"Rufumleitung f&uuml;r Anrufe von intern und extern im Fall &quot;immer&quot; "
+"auf die Std.-Nummer aktivieren. (Dazu m&uuml;ssen Sie im Men&uuml;punkt "
+"&quot;Rufumleitung&quot; eine Std.-Nr. angegeben haben!)"
+msgstr ""
+"Activate call forwarding for calls from internal and external in case &quot;"
+"always&quot; to the default number. (A default number needs to be set in "
+"menu &quot;Rufumleitung&quot;!)"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 81
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:85
+msgid ""
+"Tempor&auml;re Rufumleitung f&uuml;r Anrufe von intern und extern im Fall "
+"&quot;immer&quot; auf die angegebene Nummer programmieren"
+msgstr ""
+"Program call forwarding for calls from internal and external in case &quot;"
+"always&quot; to the specified number"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 104
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:120
+msgid ""
+"Eigenen Anrufbeantworter abfragen (Am Snom-Telefon kann daf&uuml;r auch die "
+"&quot;Retrieve&quot;-Taste gedr&uuml;ckt werden.)"
+msgstr "Check your own mailbox (Snom phone: Press &quot;Retrieve&quot; key.)"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 167
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:203
+msgid "Einloggen in die Warteschlange mit der angegebenen Durchwahl"
+msgstr "Login to specified queue"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 173
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:209
+msgid "Ausloggen aus der Warteschlange mit der angegebenen Durchwahl"
+msgstr "Log out of specified queue"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 196
+# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:233
+msgid ""
+"Einen Konferenzraum (nach 88 eine 3- oder 4-stellige Nummer) betreten bzw. "
+"er&ouml;ffnen. Wenn die Konferenz leer ist, kann eine PIN-Nr. gesetzt werden "
+"(f&uuml;r keine PIN # dr&uuml;cken). Ansonsten muss eine ggf. f&uuml;r "
+"diesen Raum gesetzte PIN eingegeben werden."
+msgstr ""
+"Enter or open a conference room (88 plus 3 or 4 digit number). If the "
+"conference is empty you can optionally set a PIN number (press # for no "
+"PIN). Otherwise you need to enter the PIN set for this conference."
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 50
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:50
+msgid ""
+"Das SIP-Telefon Snom 360 bietet neben den &uuml;blichen Zifferntasten eine "
+"ganze Reihe n&uuml;tzlicher Funktionstasten, die bis zu einem gewissen Grad "
+"konfigurierbar sind. Die wichtigsten Tasten und Funktionen werden an dieser "
+"Stelle kurz aufgef&uuml;hrt. Eine genaue Beschreibung der Tasten finden Sie "
+"in dem &uuml;ber 100 Seiten starken Handbuch zu ihrem Snom-Telefon."
+msgstr ""
+"Apart from the usual number block the SIP phone Snom 360 has some useful "
+"function keys. We&apos;ll give you are short introduction here. Please "
+"consult your Snom phone&apos;s manual for detailed instructions."
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 51
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:51
+msgid "Snom 360 Doku"
+msgstr "Snom 360 docs"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 58
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:58
+msgid "Snom 360 Tasten"
+msgstr "Snom 360 keys"
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 179
+# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:179
+msgid ""
+"<b>Nicht st&ouml;ren</b> ein/aus<br /> Wenn dieser Modus aktiviert ist, "
+"werden keine Anrufe zu Ihrem Telefon durchgestellt. Dabei wird auf dem "
+"Display links unten das Symbol und &quot;Inaktiv&quot; angezeigt. Auf Ihre "
+"ggf. eingestellte Rufweiterleitung wirkt dieser Modus, als w&auml;ren Sie "
+"gar nicht eingeloggt, also offline."
+msgstr ""
+"<b>Do Not Disturb</b> mode on/off<br /> When this feature is active, no "
+"calls will be delivered to your phone. The active state of this feature will "
+"be displayed on the phone display in the lower left corner by the "
+"corresponding symbol and the text &quot;Inactive&quot;. If you have call "
+"forwards configured, they work as if you are offline."
 
 # File: opt/gemeinschaft/htdocs/gui/mod/inc_keyprof.php:1043
 # File: opt/gemeinschaft/htdocs/gui/mod/inc_keyprof.php:1047
@@ -261,317 +321,230 @@ msgstr "call"
 msgid "Spalte"
 msgstr "Column"
 
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:252
+msgid "anruf"
+msgstr "call"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:258
+msgid "Umleitung aktiv"
+msgstr "Call forward active"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:386
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:612
+msgid "Anzeigeoptionen"
+msgstr "Display options"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:403
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:481
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:484
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:629
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:717
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:720
+msgid "Pixel"
+msgstr "Pixel"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:409
+msgid "Horiz. Gruppen"
+msgstr "Horiz. groups"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:418
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:644
+msgid "Update Interval"
+msgstr "Update interval"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:422
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:648
+msgid "Sec."
+msgstr "Sec."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:428
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:654
+msgid "Reload Interval"
+msgstr "Reload interval"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:437
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:663
+msgid "Farben"
+msgstr "Colours"
+
 #
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 179
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:179
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 217
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:461
+msgid "Benutzergruppen"
+msgstr "User groups"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:467
+msgid "Nebenstellen"
+msgstr "Extensions"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:470
+msgid "Benutzerdaten"
+msgstr "User data"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:493
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:762
+msgid "Namensanzeige"
+msgstr "Name display"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:525
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:548
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:821
+msgid "normal"
+msgstr "normal"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:526
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:550
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:822
+msgid "fett"
+msgstr "bold"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:535
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:831
+msgid "Vorname Name"
+msgstr "Firstname Lastname"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:536
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:832
+msgid "Name, Vorname"
+msgstr "Lastname, Firstname"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:537
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:833
+msgid "Name, V."
+msgstr "Lastname, F."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:538
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:834
+msgid "V. Name"
+msgstr "F. Lastname"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:539
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:835
+msgid "V.N."
+msgstr "F.N."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:549
+msgid "kursiv"
+msgstr "italic"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:551
+msgid "fett+kursiv"
+msgstr "bold+italic"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:552
+msgid "gek&uuml;rzt"
+msgstr "shortened"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:561
+msgid "eXtern"
+msgstr "eXternal"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:562
+msgid "Intern+eXtern"
+msgstr "internal+external"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:585
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_peermon.php:587
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:859
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:861
+msgid "Zur&uuml;ck"
+msgstr "Back"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:635
+msgid "Horiz. Warteschlangen"
+msgstr "Horiz. Queues"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:702
+msgid "Sprachzeit"
+msgstr "Speak time"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:706
+msgid "Agentenanzeige"
+msgstr "Agent display"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:738
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:747
+msgid "max."
+msgstr "max."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:741
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:750
+msgid "min."
+msgstr "min."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:744
+# File: opt/gemeinschaft/htdocs/gui/mod/monitor_queuemon.php:753
+msgid "durch."
+msgstr "avg."
+
+#
+# File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php, line: 173
+# File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php:266
 msgid ""
-"<b>Nicht st&ouml;ren</b> ein/aus<br /> Wenn dieser Modus aktiviert ist, "
-"werden keine Anrufe zu Ihrem Telefon durchgestellt. Dabei wird auf dem "
-"Display links unten das Symbol und &quot;Inaktiv&quot; angezeigt. Auf Ihre "
-"ggf. eingestellte Rufweiterleitung wirkt dieser Modus, als w&auml;ren Sie "
-"gar nicht eingeloggt, also offline."
+"Das Snom unterst&uuml;tzt Ringer 1-5 und lautlos.<br /> F&uuml;r das Snom "
+"kann nur entweder f&uuml;r interne oder f&uuml;r externe Anrufe eine eigene "
+"Klingeltondatei eingestellt sein, nicht f&uuml;r beides. Die L&auml;nge wird "
+"auf wenige Sekunden begrenzt."
 msgstr ""
-"<b>Do Not Disturb</b> mode on/off<br /> When this feature is active, no "
-"calls will be delivered to your phone. The active state of this feature will "
-"be displayed on the phone display in the lower left corner by the "
-"corresponding symbol and the text &quot;Inactive&quot;. If you have call "
-"forwards configured, they work as if you are offline."
+"Snom phones support ringer 1-5 and quiet.<br />For snom phones, custom ring "
+"tones can only be used for either internal or external calls, not for both. "
+"Length will be limited to a few seconds."
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 58
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:58
-msgid "Snom 360 Tasten"
-msgstr "Snom 360 keys"
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:305
+msgid "Authentifizierung"
+msgstr "Authentication"
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 51
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:51
-msgid "Snom 360 Doku"
-msgstr "Snom 360 docs"
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:377
+msgid "Jitterbuffer"
+msgstr "Jitter buffer"
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 50
-# File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:50
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:393
+msgid "Trunk"
+msgstr "Trunk"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:476
 msgid ""
-"Das SIP-Telefon Snom 360 bietet neben den &uuml;blichen Zifferntasten eine "
-"ganze Reihe n&uuml;tzlicher Funktionstasten, die bis zu einem gewissen Grad "
-"konfigurierbar sind. Die wichtigsten Tasten und Funktionen werden an dieser "
-"Stelle kurz aufgef&uuml;hrt. Eine genaue Beschreibung der Tasten finden Sie "
-"in dem &uuml;ber 100 Seiten starken Handbuch zu ihrem Snom-Telefon."
+"Plaintext: Diese Methode ist sehr unsicher, da das Passwort im Klartext "
+"übertragen wird. Sie sollte daher nicht verwendet werden.<br />MD5: In "
+"diesem Challenge/Response Verfahren wird eine MD5-Prüfsumme übertragen."
 msgstr ""
-"Apart from the usual number block the SIP phone Snom 360 has some useful "
-"function keys. We&apos;ll give you are short introduction here. Please "
-"consult your Snom phone&apos;s manual for detailed instructions."
+"Plaintext: This method is very insecure, as the password is transmitted "
+"unencrypted in plain text, so that should not be used.<br />MD5: Challenge/"
+"Response with MD5 checksum will be transmitted."
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 196
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:233
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:479
+#, php-format
 msgid ""
-"Einen Konferenzraum (nach 88 eine 3- oder 4-stellige Nummer) betreten bzw. "
-"er&ouml;ffnen. Wenn die Konferenz leer ist, kann eine PIN-Nr. gesetzt werden "
-"(f&uuml;r keine PIN # dr&uuml;cken). Ansonsten muss eine ggf. f&uuml;r "
-"diesen Raum gesetzte PIN eingegeben werden."
+"Mit Angabe des Ports (Standard-IAX-Port: %s) wird direkt dieser Port "
+"verwendet."
+msgstr "By entering the port (default IAX port: %s) it will be directly used."
+
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_gws-iax.php:485
+msgid "http://www.das-asterisk-buch.de/2.1/iax.html"
+msgstr "http://www.voip-info.org/wiki/view/IAX"
+
+# File: opt/gemeinschaft/htdocs/gui/mod/routing_outbound.php:515
+msgid ""
+"Pr&auml;fix f&uuml;r LCR (Least Cost Routing) in der Form 010<i>xx</i>. Wird "
+"bei ISDN automatisch vor die Rufnummer gesetzt, bei SIP nur an Stelle von "
+"<code>{prefix}</code> im Dialstring."
 msgstr ""
-"Enter or open a conference room (88 plus 3 or 4 digit number). If the "
-"conference is empty you can optionally set a PIN number (press # for no "
-"PIN). Otherwise you need to enter the PIN set for this conference."
+"Prefix for LCR (Least cost routing) in format 010<i>xx</i>. On ISDN/BRI it "
+"will be automatically put in front of the dialed number, for SIP only "
+"instead of <code>{prefix}</code> in the dial string."
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 173
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:209
-msgid "Ausloggen aus der Warteschlange mit der angegebenen Durchwahl"
-msgstr "Log out of specified queue"
+# File: opt/gemeinschaft/htdocs/prov/tiptel/dial-log.php:219
+# File: opt/gemeinschaft/htdocs/prov/tiptel/pb.php:307
+msgid "Wählen"
+msgstr "Dial"
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 167
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:203
-msgid "Einloggen in die Warteschlange mit der angegebenen Durchwahl"
-msgstr "Login to specified queue"
+# File: opt/gemeinschaft/htdocs/prov/tiptel/dial-log.php:230
+msgid "Keine Einträge"
+msgstr "No entries"
 
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 104
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:120
-msgid ""
-"Eigenen Anrufbeantworter abfragen (Am Snom-Telefon kann daf&uuml;r auch die "
-"&quot;Retrieve&quot;-Taste gedr&uuml;ckt werden.)"
-msgstr "Check your own mailbox (Snom phone: Press &quot;Retrieve&quot; key.)"
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 81
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:85
-msgid ""
-"Tempor&auml;re Rufumleitung f&uuml;r Anrufe von intern und extern im Fall "
-"&quot;immer&quot; auf die angegebene Nummer programmieren"
-msgstr ""
-"Program call forwarding for calls from internal and external in case &quot;"
-"always&quot; to the specified number"
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 75
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:79
-msgid ""
-"Rufumleitung f&uuml;r Anrufe von intern und extern im Fall &quot;immer&quot; "
-"auf die Std.-Nummer aktivieren. (Dazu m&uuml;ssen Sie im Men&uuml;punkt "
-"&quot;Rufumleitung&quot; eine Std.-Nr. angegeben haben!)"
-msgstr ""
-"Activate call forwarding for calls from internal and external in case &quot;"
-"always&quot; to the default number. (A default number needs to be set in "
-"menu &quot;Rufumleitung&quot;!)"
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 58
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:62
-msgid "Ausloggen"
-msgstr "Logout"
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 52
-# File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:56
-msgid ""
-"Einloggen an einem Telefon. Dabei wird die Eingabe der PIN-Nummer verlangt."
-msgstr "Login at a phone. Asks you to enter your PIN number."
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php, line: 73
-# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php, line: 130
-# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php:200
-# File: opt/gemeinschaft/htdocs/gui/mod/forwards_forwards.php:303
-msgid ""
-"Sie sollten eine Std.-Umleitungsnummer angeben! Sie wird f&uuml;r die Nicht-"
-"St&ouml;ren-Funktion am Telefon ben&ouml;tigt."
-msgstr "You should set a default number! It is required for DND."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:267
-# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:268
-msgid "Abmelden"
-msgstr "Log out"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:260
-# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:261
-msgid "Anmelden"
-msgstr "Log in"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:236
-msgid ""
-"Mehrfachauswahl mit gedr&uuml;ckter <q>STRG</q> oder <q>SHIFT</q> Taste "
-"m&ouml;glich."
-msgstr ""
-"Multi-select possible by pressing and holding <q>STRG</q> or <q>SHIFT</q> "
-"key."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_users.php:1374
-msgid "Skill"
-msgstr "Skill"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_users.php:1371
-msgid "Vorhandene Skills"
-msgstr "Available skills"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_sysrecs.php:383
-msgid ""
-"Audiodatei kann nicht gel&ouml;scht werden da in Verwendung von "
-"Warteschlange <b>"
-msgstr "Could not delete audio file, it is in use in queue <b>"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_sysrecs.php:298
-msgid "Die Audiodatei existiert bereits!"
-msgstr "The audio file already exists!"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:647
-msgid "Angemeldete"
-msgstr "Logged in"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:646
-# File: opt/gemeinschaft/htdocs/gui/mod/features_features.php:231
-msgid "Verf&uuml;gbare"
-msgstr "Available"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:643
-msgid "sind immer an der Warteschlange angemeldet."
-msgstr "are always logged in to the queue."
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:642
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:643
-msgid "Statische"
-msgstr "Static"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:582
-msgid "Warteschlangengruppen"
-msgstr "Queue groups"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:463
-msgid "Min. Agentenzahl"
-msgstr "Min. # agents"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:247
-msgid "User oder Warteschlange ung&uuml;ltig!"
-msgstr "User or Queue invalid!"
-
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_queues.php:220
-msgid "Warteschlange und Agent sind nicht auf dem gleichen Host!"
-msgstr "Queue and agent are not on the same host!"
-
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:318
-msgid "IAX-Gateways"
-msgstr "IAX gateways"
-
-#
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 93
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 108
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:253
-msgid "Snom"
-msgstr "Snom"
-
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:145
-msgid "PeerMon"
-msgstr "PeerMon"
-
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:144
-msgid "QueueMon"
-msgstr "QueueMon"
-
-# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:128
-# File: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:129
-# File: opt/gemeinschaft/htdocs/prov/polycom/main.php:103
-msgid "Konfiguration"
-msgstr "Configuration"
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 175
-#, php-format
-msgid "%d Min. %d Sek."
-msgstr "%d min. %d sec."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 176
-#, php-format
-msgid "%d Sek."
-msgstr "%d sec."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 182
-#, php-format
-msgid "%s auf \"%s\""
-msgstr "%s on \"%s\""
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/routing_outbound.php, line: 237
-msgid "Benutzer-Gr."
-msgstr "User grp."
-
-#
-# File: opt/gemeinschaft/htdocs/gui/mod/admin_users.php, line: 710
-msgid "Benutzergruppe"
-msgstr "User group"
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 162
-#, php-format
-msgid "Die Voicemail erreichte Sie auf Durchwahl %s."
-msgstr "You received this voicemail message on extension %s."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 181
-msgid "Dies ist eine automatisierte Nachricht. Bitte antworten Sie nicht."
-msgstr "This is an automated-generated message. Please do not answer."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 158
-#, php-format
-msgid "Eine neue Voicemail von %s\\nist für Sie eingegangen."
-msgstr "You have received a new voicemail message from\\n%s."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 175
-#, php-format
-msgid "Es befinden sich jetzt %d neue Voicemails in Ihrer Mailbox."
-msgstr "There are now %d new voicemail messages in your mailbox."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 184
-#, php-format
-msgid "Es befindet sich jetzt %d neue Voicemail in Ihrer Mailbox."
-msgstr "There is now %d new voicemail message in your mailbox."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 155
-#, php-format
-msgid "Hallo %s!"
-msgstr "Hello %s!"
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 152
-#, php-format
-msgid "Neue Voicemail von %s"
-msgstr "New voicemail message from %s"
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 168
-msgid "Sie finden die Voicemail im Anhang dieser Email."
-msgstr "Find the voicemail message attached."
-
-#
-# File: opt/gemeinschaft/dialplan-scripts/vm-postexec, line: 167
-msgid "d.m.Y, H:i T"
-msgstr "Y-m-d, h:i A T"
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-27 09:21+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+# File: opt/gemeinschaft/htdocs/prov/tiptel/settings.php:1048
+msgid "Anruf Listen"
+msgstr "Call logs"
 
 #
 # File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 35
@@ -619,6 +592,13 @@ msgstr "Home"
 #: opt/gemeinschaft/htdocs/gui/mod/inc_keyprof.php:219
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:124
 #: opt/gemeinschaft/htdocs/prov/polycom/directory.php:214
+#: opt/gemeinschaft/htdocs/prov/polycom/main.php:103
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:150
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:199
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:209
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:237
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:317
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:398
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:274
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:400
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:402
@@ -643,8 +623,10 @@ msgstr "Phonebook"
 #: opt/gemeinschaft/htdocs/gui/inc/modules.php:71
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:72
 #: opt/gemeinschaft/htdocs/prov/grandstream/gs_phonebook.php:148
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:113
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:194
 #: opt/gemeinschaft/htdocs/prov/snom/pb.php:122
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:133
 msgid "Intern"
 msgstr "Internal"
 
@@ -670,7 +652,9 @@ msgstr "Private"
 # File: opt/gemeinschaft/htdocs/prov/tiptel/settings.php:537
 #: opt/gemeinschaft/htdocs/gui/inc/modules.php:80
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:81
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:124
 #: opt/gemeinschaft/htdocs/prov/snom/pb.php:131
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:135
 msgid "Extern"
 msgstr "External"
 
@@ -691,6 +675,7 @@ msgstr "CSV uimport/export"
 #: opt/gemeinschaft/htdocs/gui/mod/inc_keyprof.php:144
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:139
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:163
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:149
 #: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:149
 #: opt/gemeinschaft/htdocs/prov/snom/dial-log.php:167
 msgid "Anruflisten"
@@ -764,14 +749,26 @@ msgstr "Messages"
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:68
 #: opt/gemeinschaft/htdocs/gui/mod/home_home.php:140
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:275
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:302
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:342
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:367
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:384
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:421
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:434
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:475
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:486
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:511
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:522
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:123
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:141
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:149
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:153
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:171
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:175
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:538
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:163
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:220
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:223
 msgid "Rufumleitung"
 msgstr "Call Forward"
 
@@ -783,6 +780,8 @@ msgstr "VM configuration"
 # File: opt/gemeinschaft/htdocs/gui/inc/modules.php, line: 71
 # File: opt/gemeinschaft/htdocs/gui/inc/modules.php:129
 #: opt/gemeinschaft/htdocs/gui/inc/modules.php:128
+#: opt/gemeinschaft/htdocs/prov/snom/extnumbers.php:149
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:227
 msgid "externe Nummern"
 msgstr "External Numbers"
 
@@ -848,10 +847,19 @@ msgstr "Colleagues"
 #: opt/gemeinschaft/htdocs/gui/inc/modules.php:165
 #: opt/gemeinschaft/htdocs/gui/mod/features_features.php:131
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:124
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:144
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:207
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:213
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:240
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:246
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:258
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:264
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:311
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:317
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:346
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:352
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:426
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:167
 msgid "Dienstmerkmale"
 msgstr "Service attributes"
 
@@ -1760,6 +1768,8 @@ msgstr "Search by number"
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:97
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:215
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:314
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:377
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:466
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:230
 msgid "Suchen"
 msgstr "Search"
@@ -1826,6 +1836,9 @@ msgstr "more than %d hits"
 #: opt/gemeinschaft/htdocs/gui/mod/routing_gws-sip.php:337
 #: opt/gemeinschaft/htdocs/gui/mod/system_dhcp-leases.php:223
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:98
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:266
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:352
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:440
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:225
 msgid "Name"
 msgstr "Name"
@@ -1887,6 +1900,9 @@ msgstr "Name"
 #: opt/gemeinschaft/htdocs/gui/mod/routing_blacklist.php:264
 #: opt/gemeinschaft/htdocs/gui/srv/csv-export.php:90
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:195
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:267
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:353
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:441
 msgid "Nummer"
 msgstr "Number"
 
@@ -2645,7 +2661,9 @@ msgstr "next"
 #: opt/gemeinschaft/htdocs/gui/setup/mod/network.php:905
 #: opt/gemeinschaft/htdocs/gui/setup/mod/user.php:97
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:435
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:448
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:489
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:500
 msgid "Speichern"
 msgstr "Save"
 
@@ -3209,6 +3227,8 @@ msgstr "paused"
 #: opt/gemeinschaft/htdocs/gui/mod/monitor_queues.php:59
 #: opt/gemeinschaft/htdocs/gui/monitor.php:88
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:136
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:146
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:154
 msgid "offline"
 msgstr "offline"
 
@@ -3268,8 +3288,7 @@ msgstr "Penalty"
 #: opt/gemeinschaft/htdocs/gui/mod/admin_agents.php:617
 msgid ""
 "&Auml;nderungen werden erst nach dem erneuten Anmelden des Agenten aktiv."
-msgstr ""
-"Changes will be applied when the agent logs in again."
+msgstr "Changes will be applied when the agent logs in again."
 
 # File: opt/gemeinschaft/htdocs/gui/mod/admin_ami.php:38
 #: opt/gemeinschaft/htdocs/gui/mod/admin_ami.php:38
@@ -3653,6 +3672,8 @@ msgstr "no answer"
 #: opt/gemeinschaft/htdocs/gui/mod/stats_groupc.php:264
 #: opt/gemeinschaft/htdocs/gui/mod/stats_groupout.php:268
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:134
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:144
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:152
 msgid "besetzt"
 msgstr "busy"
 
@@ -3672,6 +3693,8 @@ msgstr "failed"
 # File: opt/gemeinschaft/htdocs/gui/mod/stats_combined.php:306
 #: opt/gemeinschaft/htdocs/gui/mod/admin_calls.php:303
 #: opt/gemeinschaft/htdocs/gui/mod/stats_combined.php:306
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:344
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:373
 msgid "Zeit"
 msgstr "Time"
 
@@ -4025,6 +4048,7 @@ msgstr "User"
 #: opt/gemeinschaft/htdocs/gui/mod/admin_hgroups.php:272
 #: opt/gemeinschaft/htdocs/gui/mod/stats_qclassical.php:223
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:475
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:486
 msgid "Timeout"
 msgstr "Timeout"
 
@@ -4773,6 +4797,8 @@ msgstr "ringing"
 #: opt/gemeinschaft/htdocs/gui/mod/admin_users.php:543
 #: opt/gemeinschaft/htdocs/gui/mod/features_features.php:158
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:119
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:147
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:155
 msgid "Anklopfen"
 msgstr "Call Waiting"
 
@@ -5081,20 +5107,29 @@ msgstr "Vers."
 #: opt/gemeinschaft/htdocs/prov/grandstream/gs_phonebook.php:61
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:72
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:73
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:74
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:65
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:66
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:67
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:67
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:68
 #: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:67
 #: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:68
+#: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:69
 #: opt/gemeinschaft/htdocs/prov/polycom/extnumbers.php:67
 #: opt/gemeinschaft/htdocs/prov/polycom/extnumbers.php:68
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:71
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:72
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:73
 #: opt/gemeinschaft/htdocs/prov/polycom/idle.php:64
 #: opt/gemeinschaft/htdocs/prov/polycom/idle.php:65
+#: opt/gemeinschaft/htdocs/prov/polycom/main.php:68
+#: opt/gemeinschaft/htdocs/prov/polycom/main.php:69
 #: opt/gemeinschaft/htdocs/prov/polycom/main.php:80
 #: opt/gemeinschaft/htdocs/prov/polycom/main.php:81
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:65
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:66
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:83
 #: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:83
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:85
 #: opt/gemeinschaft/htdocs/prov/snom/dial-log.php:75
@@ -5308,6 +5343,12 @@ msgstr "on"
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:250
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:258
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:266
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:356
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:364
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:390
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:429
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:433
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:454
 msgid "aus"
 msgstr "off"
 
@@ -5352,7 +5393,11 @@ msgstr "Transmitted Caller ID for external calls"
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_hgroups.php:231
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_queues.php:644
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:397
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:416
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:514
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:525
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:447
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:541
 msgid "Standardnummer"
 msgstr "Default number"
 
@@ -5465,6 +5510,7 @@ msgstr ""
 # File: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:152
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_extnumbers.php:140
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:154
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:176
 msgid "Externe Nummern"
 msgstr "External numbers"
 
@@ -5539,6 +5585,8 @@ msgstr "external"
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_hgroups.php:51
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_queues.php:140
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:133
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:143
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:151
 msgid "immer"
 msgstr "always"
 
@@ -5551,6 +5599,8 @@ msgstr "always"
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_hgroups.php:52
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_queues.php:142
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:135
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:145
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:153
 msgid "keine Antw."
 msgstr "no answer"
 
@@ -5576,6 +5626,8 @@ msgstr "offline"
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:134
 #: opt/gemeinschaft/htdocs/gui/mod/prov_jobs.php:149
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:141
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:151
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:158
 msgid "Std."
 msgstr "Default no."
 
@@ -5592,6 +5644,8 @@ msgstr "Default no."
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_queues.php:153
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:135
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:142
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:152
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:159
 msgid "Tmp."
 msgstr "Tmp. no."
 
@@ -5605,6 +5659,8 @@ msgstr "Tmp. no."
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:162
 #: opt/gemeinschaft/htdocs/gui/mod/home_home.php:214
 #: opt/gemeinschaft/htdocs/gui/mod/monitor_peers.php:204
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:153
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:160
 msgid "AB"
 msgstr "Voicemail"
 
@@ -5619,6 +5675,8 @@ msgstr "Voicemail"
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_queues.php:797
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:431
 #: opt/gemeinschaft/htdocs/gui/mod/home_home.php:217
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:154
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:161
 msgid "Ansage"
 msgstr "Anncmnt."
 
@@ -5633,6 +5691,8 @@ msgstr "Anncmnt."
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:173
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:482
 #: opt/gemeinschaft/htdocs/gui/mod/home_home.php:220
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:156
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:163
 msgid "Zeitsteuerung"
 msgstr "Time control"
 
@@ -5790,6 +5850,10 @@ msgstr "Notification"
 #: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:808
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:256
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:264
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:362
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:388
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:432
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:453
 msgid "ein"
 msgstr "on"
 
@@ -6639,8 +6703,8 @@ msgid ""
 "Tempor&auml;re Rufumleitung f&uuml;r Anrufe von intern und extern im Fall "
 "&quot;immer&quot; auf die angegebene Nummer aktivieren"
 msgstr ""
-"Program temporary call forward for calls from internal and external in "
-"case &quot;always&quot; to specified number"
+"Program temporary call forward for calls from internal and external in case "
+"&quot;always&quot; to specified number"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:87
 msgid ""
@@ -6648,9 +6712,9 @@ msgid ""
 "&quot;immer&quot;. Hierzu wird die Eingabe der Nummer abgefragt und mit der "
 "\"#\"-Taste best&auml;tigt."
 msgstr ""
-"Program temporary call forward for calls from internal and external in "
-"case &quot;always&quot;. The number will be asked and must be confirmed "
-"with the \"#\" key."
+"Program temporary call forward for calls from internal and external in case "
+"&quot;always&quot;. The number will be asked and must be confirmed with the "
+"\"#\" key."
 
 #
 # File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 87
@@ -6707,49 +6771,49 @@ msgid ""
 "Nummer aktivieren (zur Funktion muss im Men&uuml;punkt \"Rufumleitung\" eine "
 "Std.-Nr. angegeben werden!)."
 msgstr ""
-"Program call forwarding for calls from internal in case \"always\" to "
-"the standard number (for this to work, a standard number "
-"must have been entered in the \"Call forwards\" menu!)."
+"Program call forwarding for calls from internal in case \"always\" to the "
+"standard number (for this to work, a standard number must have been entered "
+"in the \"Call forwards\" menu!)."
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:131
 msgid ""
 "Tempor&auml;re Rufumleitung f&uuml;r Anrufe von intern im Fall \"immer\" auf "
 "die angegebene Nummer aktivieren"
 msgstr ""
-"Program temporary call forward for calls from internal in "
-"case \"always\" to specified number"
+"Program temporary call forward for calls from internal in case \"always\" to "
+"specified number"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:137
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von intern im Fall &quot;immer&quot; auf den "
 "Anrufbeantworter aktivieren"
 msgstr ""
-"Program call forward for calls from internal in "
-"case &quot;always&quot; to the voice mail"
+"Program call forward for calls from internal in case &quot;always&quot; to "
+"the voice mail"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:143
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von intern im Fall &quot;immer&quot; auf die "
 "Ansage ohne Anrufbeantworter aktivieren"
 msgstr ""
-"Program call forward for calls from internal in "
-"case &quot;always&quot; to the announcement without voice mail"
+"Program call forward for calls from internal in case &quot;always&quot; to "
+"the announcement without voice mail"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:149
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von intern im Fall &quot;immer&quot; auf die "
 "Zeitsteuerung aktivieren"
 msgstr ""
-"Program call forward for calls from internal in "
-"case &quot;always&quot; to the time conditions"
+"Program call forward for calls from internal in case &quot;always&quot; to "
+"the time conditions"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:155
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von intern im Fall &quot;immer&quot; auf den "
 "Parallelruf aktivieren"
 msgstr ""
-"Program call forward for calls from internal in "
-"case &quot;always&quot; to the parallel call"
+"Program call forward for calls from internal in case &quot;always&quot; to "
+"the parallel call"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:161
 msgid ""
@@ -6764,49 +6828,49 @@ msgid ""
 "Nummer aktivieren (zur Funktion muss im Men&uuml;punkt \"Rufumleitung\" eine "
 "Std.-Nr. angegeben werden!)."
 msgstr ""
-"Program call forwarding for calls from external in case \""
-"always\" to the standard number (for this to work, a standard number "
-"must have been entered in the \"Call forwards\" menu!)."
+"Program call forwarding for calls from external in case \"always\" to the "
+"standard number (for this to work, a standard number must have been entered "
+"in the \"Call forwards\" menu!)."
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:174
 msgid ""
 "Tempor&auml;re Rufumleitung f&uuml;r Anrufe von extern im Fall \"immer\" auf "
 "die angegebene Nummer aktivieren"
 msgstr ""
-"Program temporary call forward for calls from external in "
-"case \"always\" to specified number"
+"Program temporary call forward for calls from external in case \"always\" to "
+"specified number"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:180
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von extern im Fall &quot;immer&quot; auf den "
 "Anrufbeantworter aktivieren"
 msgstr ""
-"Program call forward for calls from external in "
-"case &quot;always&quot; to the voice mail"
+"Program call forward for calls from external in case &quot;always&quot; to "
+"the voice mail"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:186
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von extern im Fall &quot;immer&quot; auf die "
 "Ansage ohne Anrufbeantworter aktivieren"
 msgstr ""
-"Program call forward for calls from external in "
-"case &quot;always&quot; to the announcement without voice mail"
+"Program call forward for calls from external in case &quot;always&quot; to "
+"the announcement without voice mail"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:192
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von extern im Fall &quot;immer&quot; auf die "
 "Zeitsteuerung aktivieren"
 msgstr ""
-"Program call forward for calls from external in "
-"case &quot;always&quot; to the time conditions"
+"Program call forward for calls from external in case &quot;always&quot; to "
+"the time conditions"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:198
 msgid ""
 "Rufumleitung f&uuml;r Anrufe von extern im Fall &quot;immer&quot; auf den "
 "Parallelruf aktivieren"
 msgstr ""
-"Program call forward for calls from external in "
-"case &quot;always&quot; to the parallel call"
+"Program call forward for calls from external in case &quot;always&quot; to "
+"the parallel call"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:204
 msgid ""
@@ -6909,16 +6973,16 @@ msgid ""
 "Direktes Einloggen eines Agenten. Hierzu wird die Eingabe der PIN-Nummer "
 "abgefragt und mit der \"#\"-Taste best&auml;tigt."
 msgstr ""
-"Direct login of an agent. The PIN number will be asked and must be "
-"confirmed with the \"#\" key."
+"Direct login of an agent. The PIN number will be asked and must be confirmed "
+"with the \"#\" key."
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:353
 msgid ""
 "Einloggen eines Agenten. Hierzu wird die Eingabe der Agentennummer und der "
 "PIN-Nummer abgefragt und mit der \"#\"-Taste best&auml;tigt."
 msgstr ""
-"Log in an agent. The agent number and the PIN number will be asked and "
-"must be confirmed with the \"#\" key."
+"Log in an agent. The agent number and the PIN number will be asked and must "
+"be confirmed with the \"#\" key."
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:359
 msgid "Agenten ausloggen"
@@ -6953,9 +7017,9 @@ msgid ""
 "eine PIN gesetzt werden (ohne PIN Taste # dr&uuml;cken). Ist eine PIN "
 "vergeben, so muss diese zum Betreten des Konferenzraumes eingegeben werden."
 msgstr ""
-"Enter or create (by dialing 88 followed by any number) a conference room. "
-"If the conference room is empty, a PIN can be set (for no PIN, press #). If "
-"a PIN is set, it must be entered to join the conference."
+"Enter or create (by dialing 88 followed by any number) a conference room. If "
+"the conference room is empty, a PIN can be set (for no PIN, press #). If a "
+"PIN is set, it must be entered to join the conference."
 
 #
 # File: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php, line: 200
@@ -6983,14 +7047,12 @@ msgstr "Caller ID supression (CLIR)"
 msgid ""
 "Unterdr&uuml;ckung der eigenen Rufnummer f&uuml;r den n&auml;chsten Anruf "
 "(intern und extern)"
-msgstr ""
-"Suppress own caller ID on the next call (internal and external)"
+msgstr "Suppress own caller ID on the next call (internal and external)"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:414
 msgid ""
 "Unterdr&uuml;ckung der eigenen Rufnummer deaktivieren (intern und extern)"
-msgstr ""
-"Deactivate suppression of own caller ID (internal and external)"
+msgstr "Deactivate suppression of own caller ID (internal and external)"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:418
 msgid "Rufziel"
@@ -7000,36 +7062,31 @@ msgstr "Destination"
 msgid ""
 "Unterdr&uuml;ckung der eigenen Rufnummer f&uuml;r einen Anruf zu einem "
 "beliebigen Rufziel"
-msgstr ""
-"Suppression of own caller ID for one call to any destination"
+msgstr "Suppression of own caller ID for one call to any destination"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:426
 msgid ""
 "Permanente Unterdr&uuml;ckung der eigenen Rufnummer f&uuml;r alle internen "
 "Rufziele"
-msgstr ""
-"Permanent suppression of own caller ID for all internal calls"
+msgstr "Permanent suppression of own caller ID for all internal calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:432
 msgid ""
 "Unterdr&uuml;ckung der eigenen Rufnummer f&uuml;r alle internen Rufziele "
 "deaktivieren"
-msgstr ""
-"Deactivate suppression of own caller ID for all internal calls"
+msgstr "Deactivate suppression of own caller ID for all internal calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:439
 msgid ""
 "Permanente Unterdr&uuml;ckung der eigenen Rufnummer f&uuml;r alle externen "
 "Rufziele"
-msgstr ""
-"Permanent suppression of own caller ID for all external calls"
+msgstr "Permanent suppression of own caller ID for all external calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:445
 msgid ""
 "Unterdr&uuml;ckung der eigenen Rufnummer f&uuml;r alle externen Rufziele "
 "deaktivieren"
-msgstr ""
-"Deactivate suppression of own caller ID for all external calls"
+msgstr "Deactivate suppression of own caller ID for all external calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:454
 msgid "Angezeigte Rufnummer (CLIP)"
@@ -7039,29 +7096,25 @@ msgstr "Displayed caller ID (CLIP)"
 msgid ""
 "Als angezeigte Rufnummer f&uuml;r interne Gespr&auml;che die Standardnummer "
 "festlegen"
-msgstr ""
-"Set standard number as displayed number for internal calls"
+msgstr "Set standard number as displayed number for internal calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:467
 msgid ""
 "Als angezeigte Rufnummer f&uuml;r interne Gespr&auml;che die angegebene "
 "Nummer festlegen"
-msgstr ""
-"Set given number as displayed number for internal calls"
+msgstr "Set given number as displayed number for internal calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:473
 msgid ""
 "Als angezeigte Rufnummer f&uuml;r externe Gespr&auml;che die Standardnummer "
 "festlegen"
-msgstr ""
-"Set standard number as displayed number for external calls"
+msgstr "Set standard number as displayed number for external calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_numbers.php:479
 msgid ""
 "Als angezeigte Rufnummer f&uuml;r externe Gespr&auml;che die angegebene "
 "Nummer festlegen"
-msgstr ""
-"Set given number as displayed number for external calls"
+msgstr "Set given number as displayed number for external calls"
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:50
 msgid ""
@@ -7071,8 +7124,8 @@ msgid ""
 "dem Handbuch zum snom-Telefon."
 msgstr ""
 "snom phones have phone model dependant configurable function keys, with "
-"functions as described below. Please consult the snom phone manual for "
-"a detailed description of all keys and functions."
+"functions as described below. Please consult the snom phone manual for a "
+"detailed description of all keys and functions."
 
 #: opt/gemeinschaft/htdocs/gui/mod/help_snom.php:52
 msgid "Dokumentation snom 320"
@@ -7321,8 +7374,8 @@ msgid ""
 "wirkt dieser Modus, als w&uuml;rden Sie telefonieren, also besetzt."
 msgstr ""
 "<b>Do not disturb</b> on/off<br />If this mode is active, no calls will be "
-"delivered to your phone. The display will show \"DND\". Active call "
-"forwards for the case \"always\" will apply when DND is enabled."
+"delivered to your phone. The display will show \"DND\". Active call forwards "
+"for the case \"always\" will apply when DND is enabled."
 
 #
 # File: opt/gemeinschaft/htdocs/gui/mod/help_snom.php, line: 188
@@ -7371,6 +7424,8 @@ msgstr "anonymous"
 #: opt/gemeinschaft/htdocs/gui/mod/home_home.php:195
 #: opt/gemeinschaft/htdocs/gui/mod/monitor_peers.php:389
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:116
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:126
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:134
 msgid "von intern"
 msgstr "from internal"
 
@@ -7383,6 +7438,8 @@ msgstr "from internal"
 #: opt/gemeinschaft/htdocs/gui/mod/home_home.php:196
 #: opt/gemeinschaft/htdocs/gui/mod/monitor_peers.php:390
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:118
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:128
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:136
 msgid "von extern"
 msgstr "from external"
 
@@ -8371,6 +8428,7 @@ msgstr "Direct calls"
 #: opt/gemeinschaft/htdocs/gui/mod/monitor_queues.php:189
 #: opt/gemeinschaft/htdocs/prov/aastra/dial-log.php:70
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:105
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:127
 #: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:127
 #: opt/gemeinschaft/htdocs/prov/snom/dial-log.php:114
 msgid "Angenommen"
@@ -8387,6 +8445,7 @@ msgstr "Answered"
 #: opt/gemeinschaft/htdocs/gui/mod/monitor_peers.php:364
 #: opt/gemeinschaft/htdocs/prov/aastra/dial-log.php:69
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:104
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:126
 #: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:126
 #: opt/gemeinschaft/htdocs/prov/snom/dial-log.php:113
 msgid "Verpasst"
@@ -9304,6 +9363,8 @@ msgstr "Custom audio file"
 # File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php, line: 220
 # File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php:209
 #: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php:220
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:257
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:325
 msgid "Lautlos"
 msgstr "Silent"
 
@@ -9321,9 +9382,9 @@ msgid ""
 "eigenen Klingelton k&ouml;nnen Sie Audio-Dateien in den Dateiformaten \"wav"
 "\", \"mp3\" oder \"ogg\" nutzen."
 msgstr ""
-"Snom phones support ringers 1-5 and quiet.<br />The length of custom "
-"ring tones is limited to a few seconds. For custom tones, you can use "
-"audio files in the formats \"wav\", \"mp3\" or \"off\"."
+"Snom phones support ringers 1-5 and quiet.<br />The length of custom ring "
+"tones is limited to a few seconds. For custom tones, you can use audio files "
+"in the formats \"wav\", \"mp3\" or \"off\"."
 
 #
 # File: opt/gemeinschaft/htdocs/gui/mod/ringtones_ringtones.php, line: 258
@@ -10835,8 +10896,7 @@ msgstr "Total Minutes"
 #: opt/gemeinschaft/htdocs/gui/mod/stats_qclassical.php:80
 msgid ""
 "Statistiken f&uuml;r Warteschlangen sind auf diesem System abgeschaltet."
-msgstr ""
-"Queue statistics are disabled on this system."
+msgstr "Queue statistics are disabled on this system."
 
 #
 # File: opt/gemeinschaft/htdocs/gui/mod/stats_qclassical.php, line: 179
@@ -11708,9 +11768,8 @@ msgid ""
 "Neustart des Endger&auml;tes aktiv. Einzelne Einstellungen k&ouml;nnen bis "
 "zum n&auml;chsten Neustart auch am Endgerät ge&auml;ndert werden."
 msgstr ""
-"The settings shown here will be applied after a restart of your phone. "
-"Some of these settings can also be changed on the phone until it is "
-"restarted."
+"The settings shown here will be applied after a restart of your phone. Some "
+"of these settings can also be changed on the phone until it is restarted."
 
 #: opt/gemeinschaft/htdocs/gui/mod/volume_phone.php:302
 msgid "Lautst&auml;rke"
@@ -12576,6 +12635,7 @@ msgstr "Key label"
 # File: opt/gemeinschaft/htdocs/prov/tiptel/dial-log.php:92
 #: opt/gemeinschaft/htdocs/prov/aastra/dial-log.php:68
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:103
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:125
 #: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:125
 #: opt/gemeinschaft/htdocs/prov/snom/dial-log.php:112
 msgid "Gewählt"
@@ -12692,6 +12752,7 @@ msgstr "Reboot phone"
 # File: opt/gemeinschaft/htdocs/prov/tiptel/settings.php:531
 #: opt/gemeinschaft/htdocs/prov/aastra/pb.php:75
 #: opt/gemeinschaft/htdocs/prov/grandstream/gs_phonebook.php:161
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:116
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:196
 #: opt/gemeinschaft/htdocs/prov/snom/pb.php:125
 msgid "Persönlich"
@@ -12746,19 +12807,33 @@ msgstr "Voicemail"
 # File: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:143
 # File: opt/gemeinschaft/htdocs/prov/polycom/features.php:215
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:140
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:150
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:299
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:351
 #: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:148
+#: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:156
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:215
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:266
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:157
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:328
 msgid "Aus"
 msgstr "Off"
+
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:155
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:351
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:162
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:379
+msgid "Parallel"
+msgstr "Parallel"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:262
 # File: opt/gemeinschaft/htdocs/prov/polycom/directory.php:230
 # File: opt/gemeinschaft/htdocs/prov/polycom/features.php:240
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:282
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:309
 #: opt/gemeinschaft/htdocs/prov/polycom/directory.php:230
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:240
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:346
 msgid "Einstellungen"
 msgstr "Settings"
 
@@ -12769,39 +12844,51 @@ msgstr "Settings"
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:297
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:350
 #: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:147
+#: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:155
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:216
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:267
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:337
 msgid "Ein"
 msgstr "On"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:371
 # File: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:490
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:396
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:415
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:515
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:526
 msgid "Temporäre Nummer"
 msgstr "Temporary Number"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:405
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:431
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:444
 msgid "Rufumleitungsziel"
 msgstr "Call forward destination"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:431
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:457
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:468
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:492
 msgid "Timeout bei keine Antwort"
 msgstr "Timeout for no answer"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:496
 #: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:522
+#: opt/gemeinschaft/htdocs/prov/polycom/callforward.php:533
 msgid "Nicht-Antwort-Timeout"
 msgstr "No-Answer-Timeout"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:119
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:120
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:136
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:159
 msgid "Konfigurationsmenü"
 msgstr "Configuration menu"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:125
 #: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:126
+#: opt/gemeinschaft/htdocs/prov/polycom/configmenu.php:145
 msgid "Lokale Telefoneinstellungen"
 msgstr "Local telephone settings"
 
@@ -12820,22 +12907,29 @@ msgstr "Flush"
 # File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:378
 # File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:467
 #: opt/gemeinschaft/htdocs/prov/polycom/diallog.php:245
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:292
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:378
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:467
 msgid "Beenden"
 msgstr "Exit"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/directory.php:207
 # File: opt/gemeinschaft/htdocs/prov/polycom/main.php:99
 #: opt/gemeinschaft/htdocs/prov/polycom/directory.php:207
+#: opt/gemeinschaft/htdocs/prov/polycom/main.php:101
 msgid "Ruflisten"
 msgstr "Call logs"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:134
+#: opt/gemeinschaft/htdocs/prov/polycom/directory.php:222
 #: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:139
+#: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:147
 msgid "Ruhe/DND"
 msgstr "Do not Disturb"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:140
 #: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:145
+#: opt/gemeinschaft/htdocs/prov/polycom/dnd.php:153
 msgid "Ruhe/DND-Status setzen"
 msgstr "Set Do not Disturb status"
 
@@ -12851,33 +12945,78 @@ msgstr "Possible external callforward-destinations"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/features.php:116
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:115
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:141
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:148
 msgid "CLIR Intern"
 msgstr "CLIR internal"
 
 # File: opt/gemeinschaft/htdocs/prov/polycom/features.php:118
 #: opt/gemeinschaft/htdocs/prov/polycom/features.php:117
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:142
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:149
 msgid "CLIR Extern"
 msgstr "CLIR external"
 
-#
-# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php, line: 65
-# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php, line: 66
-# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:65
-# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:67
-#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:65
-#: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:67
-msgid "Anruf"
-msgstr "Call"
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:152
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:154
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:161
+msgid "CID extern"
+msgstr "external CID"
+
+#: opt/gemeinschaft/htdocs/prov/polycom/features.php:153
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:155
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:162
+msgid "CID intern"
+msgstr "internal CID"
+
+# File: opt/gemeinschaft/htdocs/gui/inc/modules.php:128
+# File: opt/gemeinschaft/htdocs/gui/mod/forwards_vmconfig.php:129
+# File: opt/gemeinschaft/htdocs/prov/polycom/main.php:103
+#: opt/gemeinschaft/htdocs/prov/polycom/main.php:105
+msgid "Konfiguration"
+msgstr "Configuration"
+
+# File: opt/gemeinschaft/htdocs/prov/polycom/main.php:113
+#: opt/gemeinschaft/htdocs/prov/polycom/main.php:117
+msgid "Telefonmenü"
+msgstr "Telephone menu"
+
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:209
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:209
+msgid "durchsuchen"
+msgstr "search"
+
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:213
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:213
+msgid "Finden"
+msgstr "Find"
 
 #
-# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php, line: 66
-# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php, line: 67
-# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:66
-# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:68
-#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:66
-#: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:68
-msgid "Rufe an:"
-msgstr "Call:"
+# File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 342
+# File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 422
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:239
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:319
+# File: opt/gemeinschaft/htdocs/prov/snom/pb.php:351
+# File: opt/gemeinschaft/htdocs/prov/snom/pb.php:439
+# File: opt/gemeinschaft/htdocs/prov/tiptel/pb.php:318
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:239
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:319
+#: opt/gemeinschaft/htdocs/prov/snom/pb.php:347
+#: opt/gemeinschaft/htdocs/prov/snom/pb.php:428
+msgid "Dieses Telefonbuch enthält keine Einträge."
+msgstr "This phonebook does not contain any entries."
+
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:245
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:325
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:407
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:245
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:325
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:407
+#, php-format
+msgid ""
+"Keine Treffer für \"%s\". Drücken Sie 'Zurück', um eine neue Suche "
+"auszuführen."
+msgstr "No matches for \"%s\". Press 'Back' to perform a new search."
 
 #
 # File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php, line: 216
@@ -12889,27 +13028,96 @@ msgstr "Call:"
 # File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:407
 # File: opt/gemeinschaft/htdocs/prov/tiptel/dial-log.php:204
 # File: opt/gemeinschaft/htdocs/prov/tiptel/pb.php:281
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:290
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:376
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:465
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:215
 #: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:215
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:408
+#: opt/gemeinschaft/htdocs/prov/snom/extnumbers.php:181
+#: opt/gemeinschaft/htdocs/prov/snom/extnumbers.php:186
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:223
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:160
 msgid "Zurück"
 msgstr "Back"
 
+#
+# File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 512
+# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:401
+# File: opt/gemeinschaft/htdocs/prov/snom/pb.php:529
+#: opt/gemeinschaft/htdocs/prov/polycom/pb.php:401
+#: opt/gemeinschaft/htdocs/prov/snom/pb.php:518
+msgid "Ihr persönliches Telefonbuch enthält keine Einträge."
+msgstr "Your private phonebook does not contain any entries."
+
+#
+# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php, line: 65
+# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php, line: 66
+# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:65
+# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:67
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:65
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:65
+#: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:67
+msgid "Anruf"
+msgstr "Call"
+
+#
+# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php, line: 66
+# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php, line: 67
+# File: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:66
+# File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:68
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dial-log/dlog.php:66
+#: opt/gemeinschaft/htdocs/prov/siemens/dial-log/dlog.php:66
+#: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:68
+msgid "Rufe an:"
+msgstr "Call:"
+
 # File: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:202
 #: opt/gemeinschaft/htdocs/prov/siemens/pb/pb.php:202
+#: opt/gemeinschaft/htdocs/prov/snom/extnumbers.php:122
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:112
 msgid "Importiert"
 msgstr "Imported"
+
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:446
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:545
+msgid "temp. Nummer"
+msgstr "temp. Number"
+
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:466
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:510
+msgid "Prompt"
+msgstr "Prompt"
+
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:471
+msgid "neue Nummer"
+msgstr "New Number"
+
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:515
+msgid "neue Timeout"
+msgstr "New Timeout"
+
+#: opt/gemeinschaft/htdocs/prov/snom/callforward.php:562
+msgid "Timeout keine Antw. "
+msgstr "Timeout no Answer"
 
 #: opt/gemeinschaft/htdocs/prov/snom/dial-log.php:261
 msgid "Löschen"
 msgstr "Delete"
 
-#: opt/gemeinschaft/htdocs/prov/snom/features.php:154
-msgid "CID extern"
-msgstr "external CID"
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:205
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:203
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:180
+msgid "Menü"
+msgstr "Menu"
 
-#: opt/gemeinschaft/htdocs/prov/snom/features.php:155
-msgid "CID intern"
-msgstr "internal CID"
+#: opt/gemeinschaft/htdocs/prov/snom/features.php:387
+msgid "Cid"
+msgstr "CID"
+
+#: opt/gemeinschaft/htdocs/prov/snom/menu.php:173
+msgid "Klingeltöne"
+msgstr "Ringtones"
 
 #
 # File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 340
@@ -12926,26 +13134,9 @@ msgid ""
 "Keine Treffer für \"%s\". Drücken Sie # um die letzte Eingabe zu widerrufen."
 msgstr "No matches for \"%s\". Press # to undo the last input."
 
-#
-# File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 342
-# File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 422
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:239
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:319
-# File: opt/gemeinschaft/htdocs/prov/snom/pb.php:351
-# File: opt/gemeinschaft/htdocs/prov/snom/pb.php:439
-# File: opt/gemeinschaft/htdocs/prov/tiptel/pb.php:318
-#: opt/gemeinschaft/htdocs/prov/snom/pb.php:347
-#: opt/gemeinschaft/htdocs/prov/snom/pb.php:428
-msgid "Dieses Telefonbuch enthält keine Einträge."
-msgstr "This phonebook does not contain any entries."
-
-#
-# File: opt/gemeinschaft/htdocs/prov/snom/pb.php, line: 512
-# File: opt/gemeinschaft/htdocs/prov/polycom/pb.php:401
-# File: opt/gemeinschaft/htdocs/prov/snom/pb.php:529
-#: opt/gemeinschaft/htdocs/prov/snom/pb.php:518
-msgid "Ihr persönliches Telefonbuch enthält keine Einträge."
-msgstr "Your private phonebook does not contain any entries."
+#: opt/gemeinschaft/htdocs/prov/snom/rt.php:311
+msgid "Tonsignale"
+msgstr "Tone signals"
 
 #
 # File: opt/gemeinschaft/inc/util.php, line: 149
