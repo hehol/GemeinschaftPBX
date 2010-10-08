@@ -132,4 +132,4 @@ USE `asterisk`;
 --
 
 ALTER TABLE `queue_cf_timerules`
-	ADD `id` int(10) unsigned NOT NULL auto_increment FIRST;
+	ADD  `id` int(10) UNSIGNED NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
