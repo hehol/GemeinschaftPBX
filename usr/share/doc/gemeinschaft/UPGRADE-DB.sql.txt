@@ -737,10 +737,3 @@ CREATE TABLE IF NOT EXISTS `systemrecordings` (
 ALTER TABLE `ast_queue_members`
   ADD `uniqueid` int(10) unsigned NOT NULL auto_increment first,
   ADD KEY `uniqueid` (`uniqueid`);
-
---
--- After: 9351b250a70dd4cd80356e2a8546f7afc4360cc8
---
-
-ALTER TABLE `phones` ADD
-  `expansion_modules` varchar(50) character set ascii default NULL AFTER `fw_manual_update`;

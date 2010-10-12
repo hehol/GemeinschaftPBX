@@ -133,3 +133,10 @@ USE `asterisk`;
 
 ALTER TABLE `queue_cf_timerules`
 	ADD  `id` int(10) UNSIGNED NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
+
+--
+-- After: 9351b250a70dd4cd80356e2a8546f7afc4360cc8
+--
+
+ALTER TABLE `phones` ADD
+  `expansion_modules` varchar(50) character set ascii default NULL AFTER `fw_manual_update`;
