@@ -73,9 +73,9 @@ function _err($msg = "")
 function getUserID($ext)
 {
 	global $db;
-	
+
 	if(!preg_match("/^\d+$/", $ext)) _err("Invalid username");
-	
+
 	$user_id = (int) $db->executeGetOne("SELECT `_user_id` FROM `ast_sipfriends` WHERE `name`='". $db->escape($ext) ."'");
 	if($user_id < 1) _err("Unknown user");
 	return $user_id;
@@ -99,6 +99,9 @@ $user = trim(@$_REQUEST["u"]);
 if(!preg_match("/^\d+$/", $user)) _err("Not a valid SIP user.");
 
 $db = gs_db_slave_connect();
+
+$user_id = getUserID($user);
+$mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["m"])));
 
 // check permissions
 $user_groups = gs_group_members_groups_get(Array($user_id), "user");
@@ -126,9 +129,6 @@ $url_polycom_menu = $url_polycom_provdir ."configmenu.php";
 //////////////////// INITIAL SCREEN {
 
 if(!$type) {
-	$mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["m"])));
-	$user = trim(@$_REQUEST["u"]);
-
 	ob_start();
 
 	echo $phonemenu_doctype ."\n";
@@ -160,9 +160,6 @@ if($type == "forward")
 	{
 		_err("forbidden");
 	}
-
-	$mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["m"])));
-	$user = trim(@$_REQUEST["u"]);
 
 	ob_start();
 
