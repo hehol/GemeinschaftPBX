@@ -5534,6 +5534,7 @@ CREATE TABLE `ast_sipfriends` (
   `usereqphone` varchar(10) collate latin1_general_ci default NULL,
   `vmexten` varchar(20) collate latin1_general_ci default NULL,
   `useragent` varchar(20) collate latin1_general_ci default NULL,
+  `directmedia` varchar(5) collate latin1_general_ci NOT NULL default 'yes',
   PRIMARY KEY  (`_user_id`),
   UNIQUE KEY `name` (`name`),
   KEY `host` (`host`(25)),
