@@ -650,7 +650,7 @@ context to-conferences-self {
 				Verbose(1,### Found empty conference: ${i});
 				Playback(conf-enteringno);
 				SayDigits(${confprefix}${i});
-				MeetMe(${i},DcoTM);
+				MeetMe(${i},DcM);
 				Hangup();
 			}
 		}
@@ -666,7 +666,7 @@ context to-conferences-self {
 		&pass-connid();
 		Answer();
 		Wait(0.5);
-		MeetMe(${confnum},DcoTM);
+		MeetMe(${confnum},DcM);
 		Hangup();
 	}
 	
