@@ -146,7 +146,11 @@ if (! $type) {
 	$mac = preg_replace('/[^\dA-Z]/', '', strToUpper(trim( @$_REQUEST['m'] )));
 	$user = trim( @$_REQUEST['u'] );
 	$user_id = getUserID( $user );
-	
+
+	$user_groups       = gs_group_members_groups_get(array($user_id), 'user');
+	$permission_groups = gs_group_permissions_get($user_groups, 'phonebook_user');
+	$group_members     = gs_group_members_get($permission_groups);	
+
 	ob_start();
 	echo
 		'<?','xml version="1.0" encoding="utf-8"?','>', "\n",
@@ -155,7 +159,7 @@ if (! $type) {
 	foreach ($typeToTitle as $t => $title) {
 		$cq = 'SELECT COUNT(*) FROM ';
 		switch ($t) {
-		case 'gs'      : $cq .= '`users` WHERE `nobody_index` IS NULL AND `pb_hide` = 0'; break;
+		case 'gs'      : $cq .= '`users` WHERE `id` IN ('.implode(',',$group_members).') AND `id`!='.$user_id; break;
 		case 'imported': $cq .= '`pb_ldap` WHERE `group_id` IN ('. implode(',', $user_groups) .')' ; break;
 		case 'prv'     : $cq .= '`pb_prv` WHERE `user_id`='. $user_id ; break;
 		default        : $cq  = false;
@@ -236,10 +240,8 @@ function defineKey( $keyDef )
 	$args = array();
 	$args[] = 't='. $type;
 	$args[] = 'k='. $keys . $keyDef['name'];
-	if ($type === 'prv') {
-		$args[] = 'm='. $mac;
-		$args[] = 'u='. $user;
-	}
+	$args[] = 'm='. $mac;
+	$args[] = 'u='. $user;
 	echo
 		'<SoftKeyItem>',
 			'<Name>', $keyDef['label'], '</Name>',
@@ -362,7 +364,12 @@ LIMIT '. $num_results;
 #################################### INTERNAL PHONEBOOK {
 if ($type === 'gs') {
 	
-	// we don't need $user for this
+	$user = trim( @ $_REQUEST['u'] );
+	$user_id = getUserID( $user );
+	
+	$user_groups       = gs_group_members_groups_get(array($user_id), 'user');
+	$permission_groups = gs_group_permissions_get($user_groups, 'phonebook_user');
+	$group_members     = gs_group_members_get($permission_groups);
 	
 	ob_start();
 	echo '<?','xml version="1.0" encoding="utf-8"?','>',"\n";
@@ -395,6 +402,7 @@ FROM
 	`users` `u` JOIN
 	`ast_sipfriends` `s` ON (`s`.`_user_id`=`u`.`id`)
 WHERE
+	`u`.`id` IN ('.implode(',',$group_members).') AND
 	`u`.`pb_hide` = 0 AND
 	`u`.`nobody_index` IS NULL
 	'. ($where ? ('AND ('. $where .')') : '') .'
