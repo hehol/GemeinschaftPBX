@@ -792,7 +792,10 @@ context to-internal-users-self {
 				if ( "${is_from_gateway}" = "1" )
 					Set(__is_from_gateway=2);
 				Set(__redirect=${fw_${is_call_from}_always});
-				Dial(Local/${fw_${is_call_from}_always}/n,900);
+				if ("${gs_installation_type}" = "single")
+					jump ${fw_${is_call_from}_always}@to-internal-users-self;
+				else
+					Dial(Local/${fw_${is_call_from}_always}/n,900);
 				&hangup-proper-status();
 			}
 
@@ -845,8 +848,11 @@ context to-internal-users-self {
 			  Set(__forwarded_by_name=);
 			  if ( "${is_from_gateway}" = "1" )
 				  Set(__is_from_gateway=2);
-			  Set(__redirect=${fw_${is_call_from}_timeout});	
-			  Dial(Local/${fw_${is_call_from}_timeout}/n,900);
+			  Set(__redirect=${fw_${is_call_from}_timeout});
+			  if ("${gs_installation_type}" = "single")
+			  	jump ${fw_${is_call_from}_timeout}@to-internal-users-self;
+			  else
+			  	Dial(Local/${fw_${is_call_from}_timeout}/n,900);
 			}
 			&hangup-proper-status();
 
@@ -886,7 +892,10 @@ context to-internal-users-self {
 						if ( "${is_from_gateway}" = "1" )
 							Set(__is_from_gateway=2);
 						Set(GROUP(${CALLERID(num)})=);
-						Dial(Local/${fw_${is_call_from}_always}/n,200);
+						if ("${gs_installation_type}" = "single")
+							jump ${fw_${is_call_from}_always}@to-internal-users-self;
+						else
+							Dial(Local/${fw_${is_call_from}_always}/n,200);
 						&hangup-proper-status();
 					}
 					else {
@@ -1071,7 +1080,10 @@ context to-internal-users-self {
 					if ( "${is_from_gateway}" = "1" )
 						Set(__is_from_gateway=2);
 					Set(GROUP(${CALLERID(num)})=);
-					Dial(Local/${fw_${is_call_from}_busy}/n,200);
+					if ("${gs_installation_type}" = "single")
+						jump ${fw_${is_call_from}_busy}@to-internal-users-self;
+					else
+						Dial(Local/${fw_${is_call_from}_busy}/n,200);
 					&hangup-proper-status();
 				}
 				goto user_uncallable;
@@ -1099,7 +1111,10 @@ context to-internal-users-self {
 					if ( "${is_from_gateway}" = "1" )
 						Set(__is_from_gateway=2);
 					Set(GROUP(${CALLERID(num)})=);
-					Dial(Local/${fw_${is_call_from}_unavail}/n,200);
+					if ("${gs_installation_type}" = "single")
+						jump ${fw_${is_call_from}_unavail}@to-internal-users-self;
+					else
+						Dial(Local/${fw_${is_call_from}_unavail}/n,200);
 					&hangup-proper-status();
 				}
 				goto user_uncallable;
@@ -1127,7 +1142,10 @@ context to-internal-users-self {
 					if ( "${is_from_gateway}" = "1" )
 						Set(__is_from_gateway=2);
 					Set(GROUP(${CALLERID(num)})=);
-					Dial(Local/${fw_${is_call_from}_offline}/n,200);
+					if ("${gs_installation_type}" = "single")
+						jump ${fw_${is_call_from}_offline}@to-internal-users-self;
+					else
+						Dial(Local/${fw_${is_call_from}_offline}/n,200);
 					Congestion(3);
 					&hangup-proper-status();
 				}
@@ -1155,7 +1173,10 @@ context to-internal-users-self {
 				Set(__forwarded_to=${fw_${is_call_from}_always});
 				if ( "${is_from_gateway}" = "1" )
 					Set(__is_from_gateway=2);
-				Dial(Local/${fw_${is_call_from}_always}/n,900);
+				if ("${gs_installation_type}" = "single")
+					jump ${fw_${is_call_from}_always}@to-internal-users-self;
+				else
+					Dial(Local/${fw_${is_call_from}_always}/n,900);
 				&hangup-proper-status();
 			}
 
@@ -1178,31 +1199,6 @@ context to-internal-users-self {
 				Set(CALLERID(num)=${EXTEN});
 			
 			Set(all_busy=);
-			
-			// SONDERFALL HACK
-			//if ("${EXTEN}" = "5000") {
-			//	Answer();
-			//	Wait(0.5);
-			//	Set(ring_instead_of_moh=r);
-			//	Set(queuetimeout=30);
-			//	Verbose(1,### Sonderfall fuer Queue ${EXTEN} - klingeln statt MOH, timeout: ${queuetimeout});
-			//	AGI(/opt/gemeinschaft/dialplan-scripts/queue-num-avail-members.agi,${EXTEN});
-			//	Verbose(1,### Sonderfall fuer Queue ${EXTEN} - Agenten: ${queue_num_members}, frei: ${queue_avail_members});
-			//	if ("${queue_avail_members}" = "0") {
-			//		Set(all_busy=1);
-			//		if ("${queue_num_members}" = "0") {
-			//			// empty:
-			//			Set(QUEUESTATUS=JOINEMPTY);
-			//			Verbose(1,### Sonderfall fuer Queue ${EXTEN} - keine Agenten, behandeln wie ${QUEUESTATUS});
-			//		}
-			//		else {
-			//			// treat like full:
-			//			Set(QUEUESTATUS=FULL);
-			//			Verbose(1,### Sonderfall fuer Queue ${EXTEN} - alle besetzt, behandeln wie ${QUEUESTATUS});
-			//		}
-			//	}
-			//}
-			// ENDE SONDERFALL HACK
 			
 			if ("${all_busy}" != "1") {
 				AGI(/opt/gemeinschaft/dialplan-scripts/queue-get-sysrec,${EXTEN});
@@ -1261,7 +1257,10 @@ context to-internal-users-self {
 						Set(__is_from_gateway=2);
 					Set(__forward_case=timeout);
 					Set(__is_from_gateway=);
-					Dial(Local/${fw_${is_call_from}_timeout}/n,900);
+					if ("${gs_installation_type}" = "single")
+						jump ${fw_${is_call_from}_timeout}@to-internal-users-self;
+					else
+						Dial(Local/${fw_${is_call_from}_timeout}/n,900);
 					&hangup-proper-status();
 				}
 				Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/queue-all-busy);
@@ -1279,7 +1278,10 @@ context to-internal-users-self {
 						Set(__is_from_gateway=2);
 					Set(__forward_case=full);
 					Set(__is_from_gateway=);
-					Dial(Local/${fw_${is_call_from}_full}/n,900);
+					if ("${gs_installation_type}" = "single")
+						jump ${fw_${is_call_from}_full}@to-internal-users-self;
+					else
+						Dial(Local/${fw_${is_call_from}_full}/n,900);
 					&hangup-proper-status();
 				}
 				Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/queue-all-busy);
@@ -1297,7 +1299,10 @@ context to-internal-users-self {
 						Set(__is_from_gateway=2);
 					Set(__forward_case=empty);
 					Set(__is_from_gateway=);
-					Dial(Local/${fw_${is_call_from}_empty}/n,900);
+					if ("${gs_installation_type}" = "single")
+						jump ${fw_${is_call_from}_empty}@to-internal-users-self;
+					else
+						Dial(Local/${fw_${is_call_from}_empty}/n,900);
 					&hangup-proper-status();
 				}
 				Busy(5);

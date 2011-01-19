@@ -105,5 +105,7 @@ echo 'system_ip=', $our_ip ,';',"\n";
 $connid_enabled = gs_get_conf('GS_DP_CONNID');
 echo 'connid_enabled=', ($connid_enabled ? '1':'0') ,';',"\n";
 
+$installation_type = gs_get_conf('GS_INSTALLATION_TYPE');
+echo 'gs_installation_type=', $installation_type,';',"\n";
 
 ?>
