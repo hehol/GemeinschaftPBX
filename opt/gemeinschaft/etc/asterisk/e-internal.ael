@@ -892,7 +892,7 @@ context to-internal-users-self {
 						if ( "${is_from_gateway}" = "1" )
 							Set(__is_from_gateway=2);
 						Set(GROUP(${CALLERID(num)})=);
-						if ("${gs_installation_type}" = "single")
+						if ("${gs_installation_type}" = "single" && ${fw_parcallexten_1} = "")
 							jump ${fw_${is_call_from}_always}@to-internal-users-self;
 						else
 							Dial(Local/${fw_${is_call_from}_always}/n,200);
