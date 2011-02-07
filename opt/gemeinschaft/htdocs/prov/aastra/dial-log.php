@@ -33,6 +33,8 @@ define( 'GS_VALID', true );  /// this is a parent file
 require_once( dirName(__FILE__) .'/../../../inc/conf.php' );
 include_once( GS_DIR .'inc/db_connect.php' );
 include_once( GS_DIR .'inc/aastra-fns.php' );
+require_once( GS_DIR .'inc/gs-fns/gs_user_watchedmissed.php' );
+require_once( GS_DIR .'inc/gs-fns/gs_ami_events.php' );
 include_once( GS_DIR .'inc/gettext.php' );
 
 $xml = '';
@@ -51,6 +53,29 @@ function _get_userid()
 	$user_id = (int)$db->executeGetOne( 'SELECT `id` FROM `users` WHERE `current_ip`=\''. $db->escape($remote_addr) .'\'' );
 	if ($user_id < 1) _err( 'Unknown user.' );
 	return $user_id;
+}
+
+function _get_user( $user_id )
+{
+	global $db;
+	
+	$user = $db->executeGetOne( 'SELECT `user` FROM `users` WHERE `id`=\''. $db->escape($user_id) .'\'' );
+	if (!$user ) _err( 'Unknown user.' );
+	return $user;
+}
+
+function _get_user_ext( $user_id )
+{
+	global $db;
+	
+	$user_ext = $db->executeGetOne( 'SELECT `name` FROM `ast_sipfriends` WHERE `_user_id`=\''. $db->escape($user_id) .'\'' );
+
+	if (!$user_ext ) {
+		_err( 'Unknown user.' );
+		return false;
+	}
+
+	return $user_ext;
 }
 
 $type = trim( @$_REQUEST['t'] );
@@ -168,6 +193,15 @@ LIMIT '.$num_results;
 		$xml.= '</SoftKey>' ."\n";
 		
 		$xml.= '</AastraIPPhoneTextMenu>' ."\n";
+
+		if ( $type === 'missed') {
+		gs_user_watchedmissed( $user_id );
+		if ( GS_BUTTONDAEMON_USE == true ) {
+			$user_ext = _get_user_ext ( $user_id );
+			if ( $user_ext )
+				gs_user_missedcalls_ui( $user_ext );
+			}
+		}
 	}
 	else {
 		aastra_textscreen($typeToTitle[$type], __('Kein Eintrag'));
@@ -228,7 +262,6 @@ LIMIT 1';
 	$xml.= '</SoftKey>' ."\n";
 	
 	$xml.= '</AastraIPPhoneFormattedTextScreen>' ."\n";
-	
 }
 
 aastra_transmit_str( $xml );

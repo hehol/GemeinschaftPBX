@@ -27,12 +27,15 @@
 * MA 02110-1301, USA.
 \*******************************************************************/
 
-define("GS_VALID", true);		// this is a parent file
+define("GS_VALID", true); // this is a parent file
 
 require_once(dirname(__FILE__) ."/../../../inc/conf.php");
 require_once(GS_DIR ."inc/db_connect.php");
 include_once(GS_DIR ."inc/gs-lib.php");
+include_once(GS_DIR ."inc/gettext.php");
 include_once(GS_DIR ."inc/gs-fns/gs_ami_events.php");
+require_once(GS_DIR ."inc/group-fns.php");
+require_once(GS_DIR ."inc/langhelper.php");
 
 Header("Content-Type: text/html; charset=utf-8");
 Header("Expires: 0");
@@ -95,6 +98,18 @@ $mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["m"])));
 $user = trim(@$_REQUEST["u"]);
 $user_id = getUserID($user);
 
+// Check permissions
+$user_groups = gs_group_members_groups_get(Array($user_id), "user");
+$members = gs_group_permissions_get($user_groups, "dnd_set");
+
+// exit if access is not granted
+if(count($members) <= 0) exit(1);
+
+// setup i18n stuff
+gs_setlang(gs_get_lang_user($db, $user, GS_LANG_FORMAT_GS));
+gs_loadtextdomain("gemeinschaft-gui");
+gs_settextdomain("gemeinschaft-gui");
+
 $user_id_check = $db->executeGetOne("SELECT `user_id` FROM `phones` WHERE `mac_addr`='". $db->escape($mac) ."'");
 if($user_id != $user_id_check) _err("Not authorized");
 
@@ -113,18 +128,18 @@ if(($newdndstate == "on") || ($newdndstate == "off"))
 	$masterdb = gs_db_master_connect();
 	if(!$masterdb) _err("Could not connect to database.");
 
-	if($newdndstate == "on") $dndvalue = 1;
-	if($newdndstate == "off") $dndvalue = 0;
+	if($newdndstate == "on") $dndvalue = 'yes';
+	if($newdndstate == "off") $dndvalue = 'no';
 
-	$check = $db->execute("UPDATE `users` SET `dnd`=". $db->escape($dndvalue) ." WHERE `id`=". $user_id);
+	$check = $masterdb->execute("INSERT INTO `dnd` (`_user_id`, `active`) VALUES (" . $user_id . ", '" . $db->escape($dndvalue) ."') ON DUPLICATE KEY UPDATE `active` = '" . $db->escape($dndvalue) ."'");
 	if(!$check) _err("Failed to set new DND state.");
 
-	if(GS_BUTTONDAEMON_USE == true)	gs_dnd_changed_ui($user);
+	if(GS_BUTTONDAEMON_USE == true)	gs_dnd_changed_ui( $user, $newdndstate );
 }
 
 #################################### MAIN MENU {
 
-$current_dndstate = $db->executeGetOne("SELECT `dnd` FROM `users` WHERE `id`=". $user_id);
+$current_dndstate = $db->executeGetOne("SELECT `active` FROM `dnd` WHERE `_user_id`=". $user_id);
 
 echo $mainmenu_doctype ."\n";
 
@@ -135,10 +150,10 @@ echo "<body><br />\n";
 echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"1\" width=\"100%\">\n";
 
 echo "<tr>";
-echo "<th width=\"100%\" align=\"center\">Ruhe/DND-Status setzen:</th></tr>\n";
+echo "<th width=\"100%\" align=\"center\">". __("Ruhe/DND-Status setzen") .":</th></tr>\n";
 
-echo "<tr><td width=\"100%\" align=\"center\"><a href=\"". $url_polycom_dnd ."?m=". $mac ."&amp;u=". $user ."&amp;setdnd=on\">". (($current_dndstate == 1) ? "*" : "") ."Ein</a></td></tr>\n";
-echo "<tr><td width=\"100%\" align=\"center\"><a href=\"". $url_polycom_dnd ."?m=". $mac ."&amp;u=". $user ."&amp;setdnd=off\">". (($current_dndstate == 0) ? "*" : "") ."Aus</a></td></tr>\n";
+echo "<tr><td width=\"100%\" align=\"center\"><a href=\"". $url_polycom_dnd ."?m=". $mac ."&amp;u=". $user ."&amp;setdnd=on\">". (($current_dndstate == 'yes') ? "*" : "") . __("Ein") ."</a></td></tr>\n";
+echo "<tr><td width=\"100%\" align=\"center\"><a href=\"". $url_polycom_dnd ."?m=". $mac ."&amp;u=". $user ."&amp;setdnd=off\">". (($current_dndstate != 'yes') ? "*" : "") . __("Aus") ."</a></td></tr>\n";
 
 echo "</table>\n";
 

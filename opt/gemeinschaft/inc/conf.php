@@ -268,6 +268,8 @@ _gscnf( 'SNOM_PROV_FW_FROM6TO7_360' , null               );
 _gscnf( 'SNOM_PROV_KEY_BLACKLIST'   , ''                 );
 
 _gscnf( 'SNOM_PROV_M3_ACCOUNTS'     , 1                  );
+_gscnf( 'SNOM_PROV_M3_HTTP_USER'    , ''                 );
+_gscnf( 'SNOM_PROV_M3_HTTP_PASS'    , ''                 );
 //_gscnf( 'SNOM_PROV_M3_FW_DEFAULT_SNOM_M3', null          );
 //_gscnf( 'SNOM_PROV_M3_KEY_BLACKLIST', ''                 );
 
@@ -281,10 +283,13 @@ _gscnf( 'SIEMENS_PROV_KEY_BLACKLIST', ''                 );
 
 _gscnf( 'AASTRA_PROV_ENABLED'       , false              );
 _gscnf( 'AASTRA_PROV_PB_NUM_RESULTS', 10                 );
+_gscnf( 'AASTRA_PROV_FW_UPDATE'     , false              );
 _gscnf( 'AASTRA_PROV_FW_DEFAULT_51I', null               );
 _gscnf( 'AASTRA_PROV_FW_DEFAULT_53I', null               );
 _gscnf( 'AASTRA_PROV_FW_DEFAULT_55I', null               );
 _gscnf( 'AASTRA_PROV_FW_DEFAULT_57I', null               );
+_gscnf( 'AASTRA_PROV_USER_PASS'     , ''                 );
+_gscnf( 'AASTRA_PROV_ADMIN_PASS'    , ''                 );
 _gscnf( 'AASTRA_PROV_KEY_BLACKLIST' , ''                 );
 
 _gscnf( 'GRANDSTREAM_PROV_ENABLED'  , false              );

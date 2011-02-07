@@ -33,6 +33,8 @@ define( 'GS_VALID', true );  /// this is a parent file
 require_once( dirName(__FILE__) .'/../../../inc/conf.php' );
 include_once( GS_DIR .'inc/db_connect.php' );
 include_once( GS_DIR .'inc/gettext.php' );
+include_once( GS_DIR .'inc/group-fns.php' );
+include_once( GS_DIR .'inc/langhelper.php' );
 
 header( 'Content-Type: application/x-snom-xml; charset=utf-8' );
 # the Content-Type header is ignored by the Snom
@@ -102,6 +104,10 @@ if (! in_array( $type, array('gs','prv','imported'), true )) {
 
 $db = gs_db_slave_connect();
 
+// setup i18n stuff
+gs_setlang( gs_get_lang_user($db, trim($_REQUEST['u']), GS_LANG_FORMAT_GS) );
+gs_loadtextdomain( 'gemeinschaft-gui' );
+gs_settextdomain( 'gemeinschaft-gui' );
 
 /*
 $typeToTitle = array(
@@ -134,14 +140,17 @@ foreach ($tmp as $arr) {
 $url_snom_pb = GS_PROV_SCHEME .'://'. GS_PROV_HOST . (GS_PROV_PORT ? ':'.GS_PROV_PORT : '') . GS_PROV_PATH .'snom/pb.php';
 
 
-
 #################################### INITIAL SCREEN {
 if (! $type) {
 	
 	$mac = preg_replace('/[^\dA-Z]/', '', strToUpper(trim( @$_REQUEST['m'] )));
 	$user = trim( @$_REQUEST['u'] );
 	$user_id = getUserID( $user );
-	
+
+	$user_groups       = gs_group_members_groups_get(array($user_id), 'user');
+	$permission_groups = gs_group_permissions_get($user_groups, 'phonebook_user');
+	$group_members     = gs_group_members_get($permission_groups);	
+
 	ob_start();
 	echo
 		'<?','xml version="1.0" encoding="utf-8"?','>', "\n",
@@ -150,8 +159,8 @@ if (! $type) {
 	foreach ($typeToTitle as $t => $title) {
 		$cq = 'SELECT COUNT(*) FROM ';
 		switch ($t) {
-		case 'gs'      : $cq .= '`users` WHERE `nobody_index` IS NULL AND `pb_hide` = 0'; break;
-		case 'imported': $cq .= '`pb_ldap`'                           ; break;
+		case 'gs'      : $cq .= '`users` WHERE `id` IN ('.implode(',',$group_members).') AND `id`!='.$user_id; break;
+		case 'imported': $cq .= '`pb_ldap` WHERE `group_id` IN ('. implode(',', $user_groups) .')' ; break;
 		case 'prv'     : $cq .= '`pb_prv` WHERE `user_id`='. $user_id ; break;
 		default        : $cq  = false;
 		}
@@ -231,10 +240,8 @@ function defineKey( $keyDef )
 	$args = array();
 	$args[] = 't='. $type;
 	$args[] = 'k='. $keys . $keyDef['name'];
-	if ($type === 'prv') {
-		$args[] = 'm='. $mac;
-		$args[] = 'u='. $user;
-	}
+	$args[] = 'm='. $mac;
+	$args[] = 'u='. $user;
 	echo
 		'<SoftKeyItem>',
 			'<Name>', $keyDef['label'], '</Name>',
@@ -258,10 +265,8 @@ function defineBackKey()
 	$args = array();
 	$args[] = 't='. $type;
 	$args[] = 'k='. subStr($keys,0,-1);
-	if ($type === 'prv') {
-		$args[] = 'm='. $mac;
-		$args[] = 'u='. $user;
-	}
+	$args[] = 'm='. $mac;
+	$args[] = 'u='. $user;
 	echo
 		'<SoftKeyItem>',
 			'<Name>#</Name>',
@@ -278,7 +283,9 @@ $num_results = (int)gs_get_conf('GS_SNOM_PROV_PB_NUM_RESULTS', 10);
 #################################### IMPORTED PHONEBOOK {
 if ($type === 'imported') {
 	
-	// we don't need $user for this
+	$user = trim( @$_REQUEST['u'] );
+	$user_id = getUserID( $user );
+	$user_groups = gs_group_members_groups_get(array($user_id), 'user');
 	
 	ob_start();
 	echo '<?','xml version="1.0" encoding="utf-8"?','>',"\n";
@@ -305,6 +312,7 @@ if ($type === 'imported') {
 	  ('. ($likeFn ? ($likeFn .' AND ') : '') .'
 	  `firstname` REGEXP \'^'. $db->escape($regex) .'\' )';
 	}
+	$where .= ($where ? ' AND ' : ' ') . '`group_id` IN ('. implode(',', $user_groups) .')';
 	$query =
 'SELECT `lastname` `ln`, `firstname` `fn`, `number` `ext`
 FROM `pb_ldap`
@@ -354,7 +362,12 @@ LIMIT '. $num_results;
 #################################### INTERNAL PHONEBOOK {
 if ($type === 'gs') {
 	
-	// we don't need $user for this
+	$user = trim( @ $_REQUEST['u'] );
+	$user_id = getUserID( $user );
+	
+	$user_groups       = gs_group_members_groups_get(array($user_id), 'user');
+	$permission_groups = gs_group_permissions_get($user_groups, 'phonebook_user');
+	$group_members     = gs_group_members_get($permission_groups);
 	
 	ob_start();
 	echo '<?','xml version="1.0" encoding="utf-8"?','>',"\n";
@@ -387,6 +400,7 @@ FROM
 	`users` `u` JOIN
 	`ast_sipfriends` `s` ON (`s`.`_user_id`=`u`.`id`)
 WHERE
+	`u`.`id` IN ('.implode(',',$group_members).') AND
 	`u`.`pb_hide` = 0 AND
 	`u`.`nobody_index` IS NULL
 	'. ($where ? ('AND ('. $where .')') : '') .'

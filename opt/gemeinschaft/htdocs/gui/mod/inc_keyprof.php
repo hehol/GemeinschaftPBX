@@ -69,6 +69,8 @@ if (gs_get_conf('GS_SNOM_PROV_M3_ACCOUNTS')) {
 */
 if (gs_get_conf('GS_SIEMENS_PROV_ENABLED')) {
 	$enabled_models = preg_split('/[,\\s]+/', gs_get_conf('GS_PROV_MODELS_ENABLED_SIEMENS'));
+	if (in_array('*', $enabled_models) || in_array('os15', $enabled_models))
+		$phone_types['siemens-os15'] = 'Siemens OpenStage 15';
 	if (in_array('*', $enabled_models) || in_array('os20', $enabled_models))
 		$phone_types['siemens-os20'] = 'Siemens OpenStage 20';
 	if (in_array('*', $enabled_models) || in_array('os40', $enabled_models))
@@ -217,6 +219,11 @@ $key_functions_aastra = array(
 	'xml'       => __('Applikation'),
 	'_callers'  => __('Anrufliste'),   # defined by Gemeinschaft
 	'_dir'      => __('Telefonbuch'),  # defined by Gemeinschaft
+	'_fwd'      => __('Rufumleitung'), # defined by Gemeinschaft
+	'_fwd_dlg'  => __('Rufumleitung Dialog'), # defined by Gemeinschaft
+	'_login'    => __('Login'),        # defined by Gemeinschaft
+	'_dnd'      => __('Ruhe'),         # defined by Gemeinschaft
+	'_agent'    => __('An/Abmelden Agent'), # defined by Gemeinschaft
 );
 $key_function_none_aastra = 'empty';
 $key_functions_blacklist = preg_split('/[\\s,]+/', gs_get_conf('GS_AASTRA_PROV_KEY_BLACKLIST'));
@@ -290,7 +297,8 @@ if ($phone_type == '') {
 		elseif (array_key_exists('snom-821', $phone_types)) $phone_type = 'snom-821';
 	} else
 	if (gs_get_conf('GS_SIEMENS_PROV_ENABLED')) {
-		if     (array_key_exists('siemens-os20', $phone_types)) $phone_type = 'siemens-os20';
+		if     (array_key_exists('siemens-os15', $phone_types)) $phone_type = 'siemens-os15';
+		elseif (array_key_exists('siemens-os20', $phone_types)) $phone_type = 'siemens-os20';
 		elseif (array_key_exists('siemens-os40', $phone_types)) $phone_type = 'siemens-os40';
 		elseif (array_key_exists('siemens-os60', $phone_types)) $phone_type = 'siemens-os60';
 		elseif (array_key_exists('siemens-os80', $phone_types)) $phone_type = 'siemens-os80';
@@ -309,7 +317,7 @@ if ($phone_type == '') {
 if (in_array($phone_type, array('snom-300', 'snom-320', 'snom-360', 'snom-370', 'snom-820', 'snom-821'), true)) {
 	$phone_layout = 'snom';
 	$key_function_none = $key_function_none_snom;
-} elseif (in_array($phone_type, array('siemens-os20', 'siemens-os40', 'siemens-os60', 'siemens-os80'), true)) {
+} elseif (in_array($phone_type, array('siemens-os15', 'siemens-os20', 'siemens-os40', 'siemens-os60', 'siemens-os80'), true)) {
 	$phone_layout = 'siemens';
 	$key_function_none = $key_function_none_siemens;
 } elseif (in_array($phone_type, array('aastra-53i', 'aastra-55i', 'aastra-57i'), true)) {
@@ -1002,27 +1010,34 @@ if ($phone_layout) {
 		}
 		break;
 	case 'siemens':
-		//if ($show_ext_modules >= 0) {
-			$key_levels = array(
-				0 => array('from'=>   1, 'to'=>   9, 'shifted'=>false,
-					'title'=> htmlEnt($phone_type_title)),
-				1 => array('from'=>1001, 'to'=>1009, 'shifted'=>true,
-					'title'=> htmlEnt($phone_type_title) .', '. __('Shift-Ebene'))
-			);
-		//}
+		$key_levels = array(
+			0 => array('from'=>   1, 'to'=>   9, 'shifted'=>false,
+				'title'=> htmlEnt($phone_type_title)),
+			1 => array('from'=>1001, 'to'=>1009, 'shifted'=>true,
+				'title'=> htmlEnt($phone_type_title) .', '. __('Shift-Ebene'))
+		);
 		if ($show_ext_modules >= 1) {
-			$key_levels += array(
-				2 => array('from'=> 301, 'to'=> 312, 'shifted'=>false,
-					'title'=> __('Erweiterungs-Modul') .' 1'),
-				3 => array('from'=>1301, 'to'=>1312, 'shifted'=>true,
-					'title'=> __('Erweiterungs-Modul') .' 1, '. __('Shift-Ebene')),
-			);
+			if ($phone_type === 'siemens-os15') {
+  				$key_levels += array(
+  					2 => array('from'=> 301, 'to'=> 318, 'shifted'=>false,
+  						'title'=> __('Erweiterungs-Modul') .' 1'),
+	  				3 => array('from'=>1301, 'to'=>1318, 'shifted'=>true,
+  						'title'=> __('Erweiterungs-Modul') .' 1, '. __('Shift-Ebene')),
+  				);
+			} else {
+	  			$key_levels += array(
+  					2 => array('from'=> 301, 'to'=> 312, 'shifted'=>false,
+  						'title'=> __('Erweiterungs-Modul') .' 1'),
+	  				3 => array('from'=>1301, 'to'=>1312, 'shifted'=>true,
+  						'title'=> __('Erweiterungs-Modul') .' 1, '. __('Shift-Ebene')),
+  				);
+			}
 		}
-		if ($show_ext_modules >= 2) {
+		if (($show_ext_modules >= 2) && ($phone_type != 'siemens-os15')) {
 			$key_levels += array(
-				4 => array('from'=> 401, 'to'=> 412, 'shifted'=>false,
+				4 => array('from'=> 401, 'to'=> 418, 'shifted'=>false,
 					'title'=> __('Erweiterungs-Modul') .' 2'),
-				5 => array('from'=>1401, 'to'=>1412, 'shifted'=>true,
+				5 => array('from'=>1401, 'to'=>1418, 'shifted'=>true,
 					'title'=> __('Erweiterungs-Modul') .' 2, '. __('Shift-Ebene'))
 			);
 		}
@@ -1043,8 +1058,15 @@ if ($phone_layout) {
 				//unset($key_levels[0]);
 				//unset($key_levels[1]);
 				break;
+			case 'siemens-os15':
+				$key_levels[0]['from'] =    0;
+				$key_levels[1]['from'] =    0;
+				$key_levels[0]['to'  ] =   -1;
+				$key_levels[1]['to'  ] =   -1;
+				break;
 		}
 		break;
+	case 'aastra':
 	case 'aastra':
 		//if ($show_ext_modules >= 0) {
 			$key_levels = array();
@@ -1052,42 +1074,81 @@ if ($phone_layout) {
 		switch ($phone_type) {
 			case 'aastra-57i':
 				$key_levels[0]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Obere Tasten');
-				$key_levels[1]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Untere Tasten');
 				$key_levels[0]['from'] =    1;
 				$key_levels[0]['to'  ] =   10;
-				$key_levels[1]['from'] =  101;
-				$key_levels[1]['to'  ] =  120;
+
+				if ($show_ext_modules >= 1) {
+					$key_levels[1]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 1');
+					$key_levels[1]['from'] =  201;
+					$key_levels[1]['to'  ] =  260;
+				}
+
+				if ($show_ext_modules >= 2) {
+					$key_levels[2]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 2');
+					$key_levels[2]['from'] =  301;
+					$key_levels[2]['to'  ] =  360;
+				}
+
+				if ($show_ext_modules >= 3) {
+					$key_levels[3]['title'] = htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 3');
+					$key_levels[3]['from']  =  401;
+					$key_levels[3]['to'  ]  =  460;
+				}
+
 				break;
 			case 'aastra-55i':
 				$key_levels[0]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Obere Tasten');
-				$key_levels[1]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Untere Tasten');
 				$key_levels[0]['from'] =    1;
 				$key_levels[0]['to'  ] =    6;
-				$key_levels[1]['from'] =  101;
-				$key_levels[1]['to'  ] =  120;
+
+				if ($show_ext_modules >= 1) {
+					$key_levels[1]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 1');
+					$key_levels[1]['from'] =  201;
+					$key_levels[1]['to'  ] =  260;
+				}
+
+				if ($show_ext_modules >= 2) {
+					$key_levels[2]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 2');
+					$key_levels[2]['from'] =  301;
+					$key_levels[2]['to'  ] =  360;
+				}
+
+				if ($show_ext_modules >= 3) {
+					$key_levels[3]['title'] = htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 3');
+					$key_levels[3]['from']  =  401;
+					$key_levels[3]['to'  ]  =  460;
+				}
+
 				break;
 			case 'aastra-53i':
-				$key_levels[0]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Untere Tasten');
-				$key_levels[0]['from'] =  101;
-				$key_levels[0]['to'  ] =  120;
+				$key_levels[0]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Obere Tasten');
+				$key_levels[0]['from'] =  103;
+				$key_levels[0]['to'  ] =  106;
+
+				if ($show_ext_modules >= 1) {
+					$key_levels[1]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 1');
+					$key_levels[1]['from'] =  201;
+					$key_levels[1]['to'  ] =  260;
+				}
+
+				if ($show_ext_modules >= 2) {
+					$key_levels[2]['title']= htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 2');
+					$key_levels[2]['from'] =  301;
+					$key_levels[2]['to'  ] =  360;
+				}
+
+				if ($show_ext_modules >= 3) {
+					$key_levels[3]['title'] = htmlEnt($phone_type_title) .' &ndash; '. __('Erweiterung 3');
+					$key_levels[3]['from']  =  401;
+					$key_levels[3]['to'  ]  =  460;
+				}
+
 				break;
 			/*
 			case 'aastra-51i':
 				break;
 			*/
 		}
-		/*
-		if ($show_ext_modules >= 1) {
-			$key_levels += array(
-				//FIXME
-			);
-		}
-		if ($show_ext_modules >= 2) {
-			$key_levels += array(
-				//FIXME
-			);
-		}
-		*/
 		break;
 	case 'grandstream':
 		//if ($show_ext_modules >= 0) {

@@ -7,7 +7,7 @@
 * Copyright 2007, amooma GmbH, Bachstr. 126, 56566 Neuwied, Germany,
 * http://www.amooma.de/
 *
-* Andreas Neugebauer <neugebauer@loca.net> Locanet oHG
+* Author: Andreas Neugebauer <neugebauer@loca.net> LocaNet oHG
 * 
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License
@@ -46,7 +46,7 @@ function gs_user_name_by_ext( $ext )
 	
 	# get user_id
 	#
-	$user_name = (int)$db->executeGetOne( 'SELECT `user` FROM `users` `u`, `ast_sipfriends` `a` WHERE `a`.`name`=\''. $db->escape( $ext ) .'\' AND `a`.`_user_id` = `u`.`id`' );
+	$user_name = $db->executeGetOne( 'SELECT `user` FROM `users` `u`, `ast_sipfriends` `a` WHERE `a`.`name`=\''. $db->escape( $ext ) .'\' AND `a`.`_user_id` = `u`.`id`' );
 	if (! $user_name)
 		return new GsError( 'Unknown user for extension ' . $ext . '.' );
 	

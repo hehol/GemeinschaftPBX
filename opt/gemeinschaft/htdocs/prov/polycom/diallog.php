@@ -27,12 +27,14 @@
 * MA 02110-1301, USA.
 \*******************************************************************/
 
-define("GS_VALID", true);		// this is a parent file
-require_once(dirname(__FILE__) ."/../../../inc/conf.php");
-include_once(GS_DIR ."inc/db_connect.php");
-include_once(GS_DIR ."inc/gettext.php");
+define( 'GS_VALID', true ); // this is a parent file
+
+require_once( dirname(__FILE__) .'/../../../inc/conf.php' );
+include_once( GS_DIR .'inc/db_connect.php' );
+include_once( GS_DIR .'inc/gettext.php' );
 require_once(GS_DIR ."inc/gs-fns/gs_user_watchedmissed.php");
 require_once(GS_DIR ."inc/gs-fns/gs_ami_events.php");
+require_once(GS_DIR ."inc/langhelper.php");
 
 Header("Content-Type: text/html; charset=utf-8");
 Header("Expires: 0");
@@ -81,6 +83,8 @@ $user = trim(@$_REQUEST["user"]);
 
 if(!preg_match("/^\d+$/", $user)) _err("Not a valid SIP user.");
 
+$mac = preg_replace("/[^\dA-Z]/", "", strtoupper(trim(@$_REQUEST["mac"])));
+
 $type = trim(@$_REQUEST["type"]);
 if(!in_array($type, array("in", "out", "missed"), true)) $type = false;
 
@@ -88,9 +92,26 @@ if(isset($_REQUEST["delete"])) $delete = (int) $_REQUEST["delete"];
 
 $db = gs_db_slave_connect();
 
+// setup i18n stuff
+gs_setlang(gs_get_lang_user($db, $user, GS_LANG_FORMAT_GS));
+gs_loadtextdomain( 'gemeinschaft-gui' );
+gs_settextdomain( 'gemeinschaft-gui' );
+
 //--- get user_id
 $user_id = (int) $db->executeGetOne("SELECT `_user_id` FROM `ast_sipfriends` WHERE `name`='". $db->escape($user) ."'");
 if($user_id < 1) _err("Unknown user.");
+
+//--- check user/ip/mac
+$user_id_check = $db->executeGetOne("SELECT `user_id` FROM `phones` WHERE `mac_addr`='". $db->escape($mac) ."'");
+if ($user_id != $user_id_check) _err("Not authorized");
+
+$remote_addr = @$_SERVER["REMOTE_ADDR"];
+$remote_addr_check = $db->executeGetOne("SELECT `current_ip` FROM `users` WHERE `id`=". $user_id);
+if ($remote_addr != $remote_addr_check) _err("Not authorized");
+
+unset($remote_addr_check);
+unset($remote_addr);
+unset($user_id_check);
 
 $typeToTitle = array(
 	"out"    => __("Gew\xC3\xA4hlt"),
@@ -136,7 +157,7 @@ if(!$type)
 	{
 		$num_calls = (int) $db->executeGetOne("SELECT COUNT(*) FROM `dial_log` WHERE `user_id`=". $user_id ." AND `type`='". $t ."'");
 
-		echo "- <a href=\"". $url_polycom_dl ."?user=". $user ."&amp;type=". $t ."\">". $title ."</a><br />\n";
+		echo "- <a href=\"". $url_polycom_dl ."?user=". $user ."&amp;mac=". $mac ."&amp;type=". $t ."\">". $title ."</a><br />\n";
 	}
 
 	echo "</body>\n";
@@ -176,7 +197,7 @@ else
 
 	if($rs->numRows() == 0)
 	{
-		echo "<br />Keine Eintr\xC3\xA4ge vom Typ '<b>". $typeToTitle[$type] ."</b>'<br />\n";
+		echo "<br />". __("Keine Eintr\xC3\xA4ge vom Typ") ."'<b>". $typeToTitle[$type] ."</b>'<br />\n";
 	}
 	else
 	{
@@ -184,8 +205,8 @@ else
 
 		echo "<tr>";
 
-		echo "<th width=\"30%\">Datum</th>";
-		echo "<th width=\"70%\">Nummer</th></tr>\n";
+		echo '<th width="30%">', __("Datum"), '</th>';
+		echo '<th width="70%">', __("Nummer"), '</th></tr>',"\n";
 
 		while($r = $rs->fetchRow())
 		{
@@ -234,9 +255,9 @@ else
 
 	echo "</body>\n";
 
-	echo "<softkey index=\"1\" label=\"Leeren\" action=\"Softkey:Fetch;". $url_polycom_dl ."?user=". $user ."&amp;type=". $type ."&amp;delete=1\" />\n";
-	echo "<softkey index=\"2\" label=\"Beenden\" action=\"Softkey:Exit\" />\n";
-	echo "</html>\n";
+	echo '<softkey index="1" label="', __("Leeren"), '" action="Softkey:Fetch;'. $url_polycom_dl .'?user='. $user .'&amp;mac='. $mac .'&amp;type='. $type .'&amp;delete=1" />',"\n";
+	echo '<softkey index="2" label="', __("Beenden"), '" action="Softkey:Exit" />',"\n";
+	echo '</html>',"\n";
 	
 	if($type == "missed")
 	{

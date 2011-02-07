@@ -35,6 +35,7 @@ include_once( GS_DIR .'inc/db_connect.php' );
 include_once( GS_DIR .'inc/aastra-fns.php' );
 include_once( GS_DIR .'inc/gettext.php' );
 include_once( GS_DIR .'inc/gs-fns/gs_prov_phone_checkcfg.php' );
+require_once( GS_DIR .'inc/gs-fns/gs_ami_events.php' );
 
 $xml = '';
 
@@ -44,14 +45,28 @@ function _err( $msg='' )
 	exit(1);
 }
 
-function _get_user_name()
+function _get_user()
 {
 	$db = gs_db_slave_connect();
 	
 	$remote_addr = @$_SERVER['REMOTE_ADDR']; //FIXME
-	$user_name = (string)$db->executeGetOne( 'SELECT `user` FROM `users` WHERE `current_ip`=\''. $db->escape($remote_addr) .'\'' );
+	$user_name = (string)$db->executeGetOne( 'SELECT `user`, `nobody_index` FROM `users` WHERE `current_ip`=\''. $db->escape($remote_addr) .'\'' );
 	
-	return $user_name;
+	return gs_user_get($user_name);
+}
+
+function _get_user_ext( $user_id )
+{
+	$db = gs_db_slave_connect();
+	
+	$user_ext = $db->executeGetOne( 'SELECT `name` FROM `ast_sipfriends` WHERE `_user_id`=\''. $db->escape($user_id) .'\'' );
+
+	if (!$user_ext ) {
+		_err( 'Unknown user.' );
+		return false;
+	}
+
+	return $user_ext;
 }
 
 function _logout_user()
@@ -113,6 +128,17 @@ function _logout_user()
 	# reboot phone
 	#
 	gs_prov_phone_checkcfg_by_ip( $remote_addr,true );
+	
+	# generate userevent
+	#
+	if ( GS_BUTTONDAEMON_USE == true ) {
+
+		$user_ext = _get_user_ext ( $old_uid );
+		if ( $user_ext ) {
+			gs_user_logoff_ui ( $user_ext );
+		}
+	}
+
 	
 	return true;
 }
@@ -216,12 +242,23 @@ function _login_user($new_ext, $password)
 	#
 	if ($new_ip_addr) gs_prov_phone_checkcfg_by_ip( $new_ip_addr ,true );
 	
+	# generate userevent
+	#
+	if ( GS_BUTTONDAEMON_USE == true ) {
+
+		$user_ext = _get_user_ext ( $new_uid );
+		if ( $user_ext ) {
+			gs_user_login_ui ( $user_ext );
+		}
+	}
+
+	
 	return true;
 }
 
-$user_name = _get_user_name();
+$u = _get_user();
 
-if (! $user_name) {
+if (! $u) {
 	aastra_textscreen('Error', __('Fehler bei der Zuordnung der IP:') .' '. @$_SERVER['REMOTE_ADDR']); //FIXME
 	die();
 }
@@ -242,15 +279,17 @@ $password =  trim( @$_REQUEST['p'] );
 $url_aastra_login = GS_PROV_SCHEME .'://'. GS_PROV_HOST . (GS_PROV_PORT ? ':'.GS_PROV_PORT : '') . GS_PROV_PATH .'aastra/login.php';
 
 if ($action === 'restart') {
-	if (gs_prov_phone_checkcfg_by_ip( @$_SERVER['REMOTE_ADDR'], true )); //FIXME
-		aastra_textscreen('Info', __('Telefon wird neu gestartet.'));
+	$xml =	"<AastraIPPhoneExecute Beep=\"yes\">\n" .
+		"	<ExecuteItem URI=\"Command: FastReboot\"/>\n" .
+		"</AastraIPPhoneExecute>\n";
+	aastra_transmit_str($xml);
 }
 
 if ($action === 'logout' && $type === 'user') {
 	if (! _logout_user()) {
-		aastra_textscreen('Error',__('Abmelden nicht erfolgreich!'));
+		aastra_textscreen('Error',__('Abmelden nicht erfolgreich!'), 0, true);
 	} else {
-		aastra_textscreen('Info', __('Benutzer erfolgreich abgemeldet.').' '.__('Telefon wird neu gestartet.'));
+		aastra_textscreen('Info', __('Benutzer erfolgreich abgemeldet.'), 3);
 	}
 }
 
@@ -258,9 +297,9 @@ if ($action === 'login' && $type === 'user') {
 	
 	if ($user && $password) {
 		if (! _login_user($user, $password)) {
-			aastra_textscreen('Error',__('Falsche Durchwahl oder PIN!'));
+			aastra_textscreen('Error',__('Falsche Durchwahl oder PIN!'), 0, true);
 		} else {
-			aastra_textscreen('Info', __('Benutzer erfolgreich angemeldet.').' '.__('Telefon wird neu gestartet.'));
+			aastra_textscreen('Info', __('Benutzer erfolgreich angemeldet.'), 3);
 		}
 	} else {
 		if ($user)
@@ -306,16 +345,26 @@ if ($action === 'login' && $type === 'user') {
 elseif (! $action) {
 	
 	$xml = '<AastraIPPhoneTextMenu destroyOnExit="yes" LockIn="no" style="none">' ."\n";
-	$xml.= '<Title>'. __('Benutzer').': '.$user_name.'</Title>' ."\n";
+	if (! $u['nobody_index'])
+		$xml.= '<Title>'. __('Benutzer').': '.$u['user'].'</Title>' ."\n";
 	
 	$xml.= '<MenuItem>' ."\n";
-	$xml.= '	<Prompt>'. __('Benutzer wechseln') .'</Prompt>' ."\n";
+	if ($u['nobody_index'])
+		$xml.= '	<Prompt>'. __('Benutzer anmelden') .'</Prompt>' ."\n";
+	else
+		$xml.= '	<Prompt>'. __('Benutzer wechseln') .'</Prompt>' ."\n";
 	$xml.= '	<URI>'. $url_aastra_login .'?a=login</URI>' ."\n";
 	$xml.= '</MenuItem>' ."\n";
 	
+	if (! $u['nobody_index']) {
+		$xml.= '<MenuItem>' ."\n";
+		$xml.= '	<Prompt>'. __('Benutzer abmelden') .'</Prompt>' ."\n";
+		$xml.= '	<URI>'. $url_aastra_login .'?a=logout</URI>' ."\n";
+		$xml.= '</MenuItem>' ."\n";
+	}
+
 	$xml.= '<MenuItem>' ."\n";
-	$xml.= '	<Prompt>'. __('Benutzer abmelden') .'</Prompt>' ."\n";
-	$xml.= '	<URI>'. $url_aastra_login .'?a=logout</URI>' ."\n";
+	$xml.= '	<Prompt></Prompt>' ."\n";
 	$xml.= '</MenuItem>' ."\n";
 	
 	$xml.= '<MenuItem>' ."\n";

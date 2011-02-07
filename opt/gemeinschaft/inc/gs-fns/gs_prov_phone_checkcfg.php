@@ -253,7 +253,7 @@ function _gs_prov_phone_checkcfg_by_ip_do_snom_m3( $ip, $reboot=true )
 	if (_gs_prov_phone_checkcfg_exclude_ip( $ip )) return;
 	
 	// The M3 has to be rebooted to read its config.
-	@ exec( 'wget -O /dev/null -o /dev/null -b --tries=3 --timeout=8 --retry-connrefused -q --user='. qsa(gs_get_conf('GS_SNOM_PROV_HTTP_USER','')) .' --password='. qsa(gs_get_conf('GS_SNOM_PROV_HTTP_PASS','')) .' '. qsa('http://'. $ip .'/reboot.html') . ' >>/dev/null 2>>/dev/null &', $out, $err );
+	@ exec( 'wget -O /dev/null -o /dev/null -b --tries=3 --timeout=8 --retry-connrefused -q --user='. qsa(gs_get_conf('GS_SNOM_PROV_M3_HTTP_USER','')) .' --password='. qsa(gs_get_conf('GS_SNOM_PROV_M3_HTTP_PASS','')) .' '. qsa('http://'. $ip .'/reboot.html') . ' >>/dev/null 2>>/dev/null &', $out, $err );
 }
 
 
@@ -273,17 +273,25 @@ function _gs_prov_phone_checkcfg_by_ip_do_siemens( $ip, $reboot=true, $pre_sleep
 function _gs_prov_phone_checkcfg_by_ip_do_aastra( $ip, $reboot=true )
 {
 	if (_gs_prov_phone_checkcfg_exclude_ip( $ip )) return;
-	
-	$prov_host = gs_get_conf('GS_PROV_HOST');
+
+	$prov_url_aastra = GS_PROV_SCHEME .'://'. GS_PROV_HOST . (GS_PROV_PORT ? ':'.GS_PROV_PORT : '') . GS_PROV_PATH .'aastra/';
 	
 	$xmlpi = '<'.'?xml version="1.0" encoding="UTF-8"?'.'>'."\n";
 	$xml = '<AastraIPPhoneExecute>' ."\n";
-	$xml.= '	<ExecuteItem URI="Command: Reset" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'settings.php?dynamic=1" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=1&amp;level=1" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=2&amp;level=1" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=3&amp;level=1" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=1&amp;level=2" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=2&amp;level=2" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=3&amp;level=2" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=1&amp;level=3" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=2&amp;level=3" />' ."\n";
+	$xml.= '	<ExecuteItem URI="' . $prov_url_aastra . 'expmod.php?module=3&amp;level=3" />' ."\n";
 	$xml.= '</AastraIPPhoneExecute>' ."\n";
 	
 	$cmd = 'wget -O /dev/null -o /dev/null -b --tries=3 --timeout=8 --retry-connrefused -q'
 		.' '. qsa('http://'.$ip.'/')
-		.' --referer='. qsa('http://'.$prov_host.'/')
 		.' -U '. qsa('')
 		.' --no-http-keep-alive'
 		.' --header='. qsa('Connection: Close')

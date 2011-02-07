@@ -157,11 +157,33 @@ macro is_dmz( is_dmz_num ) {
 
 
 //---------------------------------------------------------------------
+//  Count calls from caller
+//---------------------------------------------------------------------
+
+macro caller-count() {
+	Set(GROUP(${CALLERID(num)})=callcount);
+	AGI(/opt/gemeinschaft/dialplan-scripts/get-call-limit,${user_name});
+	if ("${call_limit_group_id}" != "") {
+		Set(GROUP(${call_limit_group_id})=groupcount);
+		if ("${GROUP_COUNT(groupcount@${call_limit_group_id})}" > "${call_limit_value}") {
+			Verbose(1,### Too many calls in group ${call_limit_group_name} (outbound));
+			Set(DIALSTATUS=BUSY);
+			&hangup-proper-status();
+		}
+	}
+	return;
+}
+
+
+//---------------------------------------------------------------------
 //  User Login Macro
 //---------------------------------------------------------------------
 
 macro cmm-login( new_user_name ) {
 	
+	AGI(/opt/gemeinschaft/dialplan-scripts/get-user-language,${new_user_name});
+	Set(CHANNEL(language)=${gs_userlang_ast});
+
 	Set(CDR(amaflags)=OMIT);
 	Answer();
 	AGI(/opt/gemeinschaft/dialplan-scripts/cmm-check-user.agi,${new_user_name},${is_from_gateway});
@@ -180,8 +202,8 @@ macro cmm-login( new_user_name ) {
 	
 	//Playback(agent-loginok);
 	UserEvent(UserLoginUI,user: ${new_user_name});
-	Playback(/opt/gemeinschaft/sounds/${gs_lang}/sie-sind-jetzt-angemeldet);
-	Playback(/opt/gemeinschaft/sounds/${gs_lang}/bitte-warten-sie);
+	Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/sie-sind-jetzt-angemeldet);
+	Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/bitte-warten-sie);
 	TrySystem(/opt/gemeinschaft/dialplan-scripts/prov-sync-phone --ext='${new_user_name}');
 	if ("${user_name}" != "${new_user_name}") {
 		if ("${user_name}" != "") {
@@ -230,6 +252,7 @@ macro cmm-login( new_user_name ) {
 macro cmm-logout() {
 	
 	Set(CDR(amaflags)=OMIT);
+	AGI(/opt/gemeinschaft/dialplan-scripts/get-user-language,${CALLERID(num)});
 	Answer();
 	Wait(0.5);
 	AGI(/opt/gemeinschaft/dialplan-scripts/cmm-logout.agi,${user_id},${is_from_gateway},${CALLERID(num)});
@@ -237,8 +260,8 @@ macro cmm-logout() {
 		goto error;
 	//Playback(agent-loggedoff&vm-goodbye);
 	UserEvent(UserLogoffUI,user: ${user_name});
-	Playback(/opt/gemeinschaft/sounds/${gs_lang}/sie-sind-abgemeldet);
-	Playback(/opt/gemeinschaft/sounds/${gs_lang}/bitte-warten-sie);
+	Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/sie-sind-abgemeldet);
+	Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/bitte-warten-sie);
 	if ("${user_name}" != "") {
 		TrySystem(/opt/gemeinschaft/dialplan-scripts/prov-sync-phone --ext='${user_name}');
 	} else {
@@ -342,6 +365,7 @@ macro agent-login( new_user_name ) {
 			UserEvent(QueueLoginUI,user: ${user_name},queue: ${queueNr});
 			QueueLog(${queueNr},${UNIQUEID},Agent/${new_user_name},ADDMEMBER,SIP/${user_name});
 			QueueLog(NONE,${UNIQUEID},Agent/${new_user_name},HOTDESK,SIP/${user_name});
+			Set(tmp=${QUEUE_MEMBER(${queueNr},logged)});
 		} 
 		Playback(agent-loginok);
 
@@ -390,6 +414,7 @@ macro agent-logout() {
 		for(i=0;${i} < ${oqueue_count}; i=${i} + 1){
 			queueNr=${oqueue${i}};
 			QueueLog(${queueNr},${UNIQUEID},Agent/${agent},REMOVEMEMBER,SIP/${user_name});
+			Set(tmp=${QUEUE_MEMBER(${queueNr},logged)});
 		}
 		Playback(agent-loggedoff);
 		
@@ -408,10 +433,10 @@ macro agent-pause() {
 	
 	Wait(0.5);
 	if ("${agent}" != "") {
-		QueueLog(NONE,NONE,SIP/${user_name},PAUSEALL,);
+		PauseQueueMember(,SIP/${user_name});
 		UserEvent(AgentPausedUI,agent: ${user_name});
 		Verbose(1,### Agent ${agent} on ${user_name} paused);
-		Playback(beep);
+		//Playback(beep);
 	} else {
 		Verbose(1,### Failed to pause agent on ${user_name});
 		Playback(beeperr);
@@ -428,10 +453,10 @@ macro agent-unpause() {
 	Wait(0.5);
 	
 	if ("${agent}" != "") {
-		QueueLog(NONE,NONE,SIP/${user_name},UNPAUSEALL,);
+		UnpauseQueueMember(,SIP/${user_name});
 		UserEvent(AgentUnPausedUI,agent: ${user_name});
 		Verbose(1,### Agent ${agent} on ${user_name} unpaused);
-		Playback(beep);
+		//Playback(beep);
 	} else {
 		Verbose(1,### Failed to unpause agent on ${user_name});
 		Playback(beeperr);
@@ -473,6 +498,7 @@ macro rec-playback(id) {
 
 macro rec-record(extension) {
 
+	AGI(/opt/gemeinschaft/dialplan-scripts/get-user-language,${extension});
 	Set(filename=/tmp/${UNIQUEID});
 	Set(response=0);
 	Answer();
@@ -488,11 +514,11 @@ macro rec-record(extension) {
 			Record(${filename}.sln);
 			Set(endtime=${STRFTIME(${EPOCH},,%Y%m%d%H%M%S)});
 		}
-		Read(response,/opt/gemeinschaft/sounds/${gs_lang}/druecken-sie-1-um-die-aufnahme-zu-speichern,1,,3,);
+		Read(response,/opt/gemeinschaft/sounds/${gs_userlang_gs}/druecken-sie-1-um-die-aufnahme-zu-speichern,1,,3,);
 	}
 
 	AGI(/opt/gemeinschaft/dialplan-scripts/sys-rec-record,${extension},${filename}.sln,$[${endtime} - ${starttime}]);
-	Playback(/opt/gemeinschaft/sounds/${gs_lang}/vielen-dank);
+	Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/vielen-dank);
 	Hangup();
 	return;
 
@@ -517,10 +543,12 @@ context sys-rec-record {
 context to-conferences {
 	
 	_88000 => {
+		&caller-count();
 		Set(confprefix=${EXTEN:0:2});
 		jump c-empty@to-conferences;
 	}
 	_880000 => {
+		&caller-count();
 		Set(confprefix=${EXTEN:0:2});
 		jump c-empty@to-conferences;
 	}
@@ -560,10 +588,12 @@ context to-conferences {
 	}
 	
 	_88XXX => {
+		&caller-count();
 		Set(confprefix=${EXTEN:0:2});
 		jump c-${EXTEN:2}@to-conferences;
 	}
 	_88XXXX => {
+		&caller-count();
 		Set(confprefix=${EXTEN:0:2});
 		jump c-${EXTEN:2}@to-conferences;
 	}
@@ -622,7 +652,7 @@ context to-conferences-self {
 				Verbose(1,### Found empty conference: ${i});
 				Playback(conf-enteringno);
 				SayDigits(${confprefix}${i});
-				MeetMe(${i},DcoTM);
+				MeetMe(${i},DcM);
 				Hangup();
 			}
 		}
@@ -638,7 +668,7 @@ context to-conferences-self {
 		&pass-connid();
 		Answer();
 		Wait(0.5);
-		MeetMe(${confnum},DcoTM);
+		MeetMe(${confnum},DcM);
 		Hangup();
 	}
 	
@@ -758,6 +788,7 @@ context queues-login-logout {
 context voicemail-self {
 	
 	voicemail => {
+		&caller-count();
 		//Set(CHANNEL(language)=en);  // derzeit notwendig da der dt. Sprachbaustein "eine" im Englischen fehlt
 		Set(CDR(amaflags)=OMIT);
 		Answer();
@@ -775,6 +806,7 @@ context voicemail-any {
 	
 	//_80. => {
 	_vm-. => {
+		&caller-count();
 		Set(vmbox=${EXTEN:3});
 		Set(CDR(amaflags)=OMIT);
 		Verbose(1,### Check mailbox ${vmbox});
@@ -948,6 +980,7 @@ context vm-ann-del-ok {
 context vm-ann-rec {
 	
 	vm_rec_internal => {
+		&caller-count();
 		Set(CDR(amaflags)=OMIT);
 		Set(__msource=internal);
 		Answer();
@@ -956,6 +989,7 @@ context vm-ann-rec {
 		Hangup();
 	}
 	vm_rec_external => {
+		&caller-count();
 		Set(CDR(amaflags)=OMIT);
 		Set(__msource=external);
 		Answer();
@@ -1071,7 +1105,7 @@ macro dial-gateway-do( mnumber ) {
 		// Hack to use clip no screening properly
 		if ("${CALLERID(num):0:2}" = "00")
 			Set(CALLERID(num)=${CALLERID(num):2});
-		AGI(/opt/gemeinschaft/dialplan-scripts/out-route.agi,${mnumber},${is_sub_system},${CALLERID(num)},${user_id},1);
+		AGI(/opt/gemeinschaft/dialplan-scripts/out-route.agi,${mnumber},${is_sub_system},${CALLERID(num)},${forwarded_by_id},1);
 	}
 	else {
 		AGI(/opt/gemeinschaft/dialplan-scripts/out-route.agi,${mnumber},${is_sub_system},${user_name},${user_id},0);
@@ -1255,6 +1289,7 @@ context to-emergency {
 }
 
 macro emergency-call( mnumber ) {
+	&caller-count();
 	if ("${mnumber}" = "${emergency_police}") {
 		Set(tmp=(police));
 	} else if ("${mnumber}" = "${emergency_fire}") {
@@ -1464,13 +1499,14 @@ context call-completion {
 	
 	_cc-. => {
 		Set(callee=${EXTEN:3});
+		AGI(/opt/gemeinschaft/dialplan-scripts/get-user-language,${user_name});
 		//Set(CHANNEL(language)=de);
 		#exec "/opt/gemeinschaft/etc/asterisk/e-lang.ael.php"
 		Verbose(1,### Call completion from ${user_name} to ${callee});
 		Answer();
 		Wait(0.5);
 		//SayDigits(${callee});
-		//Playback(/opt/gemeinschaft/sounds/${gs_lang}/ist-jetzt-wieder-erreichbar);
+		//Playback(/opt/gemeinschaft/sounds/${gs_userlang_gs}/ist-jetzt-wieder-erreichbar);
 		Set(CALLERID(all)=${orig_callerid});
 		//DumpChan();
 		Set(__is_callcompletion=1); // no forwards and no mailbox
@@ -1595,6 +1631,13 @@ context default {
 
 
 #exec "/opt/gemeinschaft/etc/asterisk/e-ivr.ael.php"
+
+
+//---------------------------------------------------------------------
+//  write queuelog
+//---------------------------------------------------------------------
+
+#include "/opt/gemeinschaft/etc/asterisk/e-queulog-agent.ael"
 
 
 //---------------------------------------------------------------------

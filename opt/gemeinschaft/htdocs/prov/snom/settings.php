@@ -42,7 +42,25 @@ require_once( GS_DIR .'inc/util.php' );
 require_once( GS_DIR .'inc/gs-lib.php' );
 require_once( GS_DIR .'inc/prov-fns.php' );
 require_once( GS_DIR .'inc/quote_shell_arg.php' );
+require_once( GS_DIR .'inc/langhelper.php' );
 set_error_handler('err_handler_die_on_err');
+
+function _snom_astlang_to_snomlang( $langcode )
+{
+	$lang_default = "Deutsch";
+
+	$lang_transtable = Array(
+		"de" => "Deutsch",
+		"en" => "English(US)",
+		"us" => "English(US)",
+	);
+
+	$lang_ret = $lang_transtable[$langcode];
+	if(strlen($lang_ret) == 0)
+		return $lang_default;
+
+	return $lang_ret;
+}
 
 function _snom_normalize_version( $appvers )
 {
@@ -440,6 +458,8 @@ if (! is_array($user)) {
 	_settings_err( 'DB error.' );
 }
 
+$user_snomlang = @_snom_astlang_to_snomlang($user['language']);
+
 # change the ip account's secret for improved security and to kick
 # phones who did not get a reboot
 #
@@ -507,8 +527,8 @@ if (gs_get_conf('GS_BOI_ENABLED')) {
 #  General
 #####################################################################
 
-psetting('language'         , 'Deutsch', true);
-psetting('web_language'     , 'Deutsch', true);
+psetting('language'         , $user_snomlang, true);
+psetting('web_language'     , $user_snomlang, true);
 psetting('display_method'   , 'display_name_number');
 psetting('tone_scheme'      , 'GER'    );
 psetting('date_us_format'   , 'off'    , true);
@@ -876,9 +896,9 @@ psetting('vpn_netcatserver', ''  );
 
 /*
 # (for building redial menu)
-psetting('action_incoming_url', 'http://192.168.1.11/snom/dial-log.php?user=$user_name1&type=in&remote=$remote');
-psetting('action_outgoing_url', 'http://192.168.1.11/snom/dial-log.php?user=$user_name1&type=out&remote=$remote');
-psetting('action_missed_url', 'http://192.168.1.11/snom/dial-log.php?user=$user_name1&type=missed&remote=$remote');
+psetting('action_incoming_url', 'http://192.168.1.11/snom/dial-log.php?user=$user_name1&mac=$mac&type=in&remote=$remote');
+psetting('action_outgoing_url', 'http://192.168.1.11/snom/dial-log.php?user=$user_name1&mac=$mac&type=out&remote=$remote');
+psetting('action_missed_url', 'http://192.168.1.11/snom/dial-log.php?user=$user_name1&mac=$mac&type=missed&remote=$remote');
 */
 psetting('action_incoming_url'       , '');
 psetting('action_outgoing_url'       , '');
@@ -920,16 +940,16 @@ psetting('dkey_menu'     , 'url '. $prov_url_snom .'menu.php?m=$mac&u=$user_name
 psetting('dkey_redial'   , 'keyevent F_REDIAL'    );
 
 psetting('dkey_directory', 'url '. $prov_url_snom .'pb.php?m=$mac&u=$user_name1');
-psetting('dkey_redial'   , 'url '. $prov_url_snom .'dial-log.php?user=$user_name1');
+psetting('dkey_redial'   , 'url '. $prov_url_snom .'dial-log.php?user=$user_name1&mac=$mac');
 # so geht die Retrieve-Taste auch ohne neue Nachrichten:
 psetting('dkey_retrieve' , 'speed voicemail');
 
 # firmware 8.2-Settings
-psetting('idle_left_key_action'   , 'url '. $prov_url_snom .'dial-log.php?user=$user_name1');
+psetting('idle_left_key_action'   , 'url '. $prov_url_snom .'dial-log.php?user=$user_name1&mac=$mac');
 psetting('idle_right_key_action'   , 'keyevent F_HELP');
 psetting('idle_up_key_action'   , '');
 psetting('idle_down_key_action'   , '');
-psetting('idle_ok_key_action'   , 'url '. $prov_url_snom .'dial-log.php?user=$user_name1&type=out');
+psetting('idle_ok_key_action'   , 'url '. $prov_url_snom .'dial-log.php?user=$user_name1&mac=$mac&type=out');
 psetting('idle_cancel_key_action'   , '');
 
 
@@ -1026,7 +1046,7 @@ if (! is_array($softkeys)) {
 			case '_callers':
 				$native_anyway = true;
 				$key_def['function'] = 'url';
-				$key_def['data'    ] = $prov_url_snom .'dial-log.php?user=$user_name1';
+				$key_def['data'    ] = $prov_url_snom .'dial-log.php?user=$user_name1&mac=$mac';
 				break;
 			case '_menu':
 				$native_anyway = true;
@@ -1307,7 +1327,7 @@ if ($lang_vers) {
 	//setting( '_gui_lang', 'Cestina'      , $langdir.'gui_lang_CZ.xml' );
 	//setting( '_gui_lang', 'Dansk'        , $langdir.'gui_lang_DK.xml' );
 	setting( '_gui_lang', 'Deutsch'      , $langdir.'gui_lang_DE.xml' );
-	setting( '_gui_lang', 'English(US) ' , $langdir.'gui_lang_EN.xml' );
+	setting( '_gui_lang', 'English(US)'  , $langdir.'gui_lang_EN.xml' );
 	//setting( '_gui_lang', 'English(UK) ' , $langdir.'gui_lang_UK.xml' );
 	//setting( '_gui_lang', 'Espanol'      , $langdir.'gui_lang_SP.xml' );
 	//setting( '_gui_lang', 'Francais'     , $langdir.'gui_lang_FR.xml' );
