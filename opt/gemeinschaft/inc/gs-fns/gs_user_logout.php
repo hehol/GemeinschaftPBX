@@ -76,17 +76,7 @@ function gs_user_logout( $user, $reboot=true )
 		$db->execute( 'UPDATE `phones` SET `user_id`='. ($new_user_id > 0 ? $new_user_id : 'NULL') .' WHERE `id`='. (int)$phone['id'] .' AND `user_id`='. $user_id );
 	}
 	
-	# log out of all queues
-	#
-	$user_ext = $db->executeGetOne( 'SELECT `name` FROM `ast_sipfriends` WHERE `_user_id`='. $user_id );
-	$user_ext = preg_replace('/[^0-9]/', '', $user_ext);
-	if ($user_ext != '') {
-		ob_start();
-		@exec( GS_DIR.'dialplan-scripts/fake-agi-env.php'
-		. ' '. qsa(GS_DIR.'dialplan-scripts/queue-login-logout.agi') .' '. qsa($user_ext) .' 0 logoutall 1>>/dev/null 2>>/dev/null' );
-		ob_end_clean();
-	}
-	
+
 	# restart phone
 	#
 	if ($ip_addr != '') $ret = @ gs_prov_phone_checkcfg_by_ip( $ip_addr, $reboot );

@@ -115,17 +115,6 @@ while ($phone = $rs->fetchRow()) {
 	
 }
 
-# log out of all queues
-#
-$user_ext = $db->executeGetOne( 'SELECT `name` FROM `ast_sipfriends` WHERE `_user_id`='. $user_id );
-$user_ext = preg_replace('/[^0-9]/', '', $user_ext);
-if ($user_ext != '') {
-	ob_start();
-	@exec( GS_DIR.'dialplan-scripts/fake-agi-env.php'
-		. ' '. qsa(GS_DIR.'dialplan-scripts/queue-login-logout.agi') .' '. qsa($user_ext) .' 0 logoutall 1>>/dev/null 2>>/dev/null' );
-	ob_end_clean();
-}
-
 
 # get old phone's IP addr.
 #
