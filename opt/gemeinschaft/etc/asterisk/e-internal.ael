@@ -892,10 +892,7 @@ context to-internal-users-self {
 						if ( "${is_from_gateway}" = "1" )
 							Set(__is_from_gateway=2);
 						Set(GROUP(${CALLERID(num)})=);
-						if ("${gs_installation_type}" = "single" && ${fw_parcallexten_1} = "")
-							jump ${fw_${is_call_from}_always}@to-internal-users-self;
-						else
-							Dial(Local/${fw_${is_call_from}_always}/n,200);
+						Dial(Local/${fw_${is_call_from}_always}/n,200);
 						&hangup-proper-status();
 					}
 					else {
@@ -1080,10 +1077,7 @@ context to-internal-users-self {
 					if ( "${is_from_gateway}" = "1" )
 						Set(__is_from_gateway=2);
 					Set(GROUP(${CALLERID(num)})=);
-					if ("${gs_installation_type}" = "single")
-						jump ${fw_${is_call_from}_busy}@to-internal-users-self;
-					else
-						Dial(Local/${fw_${is_call_from}_busy}/n,200);
+					Dial(Local/${fw_${is_call_from}_busy}/n,200);
 					&hangup-proper-status();
 				}
 				goto user_uncallable;
@@ -1111,10 +1105,7 @@ context to-internal-users-self {
 					if ( "${is_from_gateway}" = "1" )
 						Set(__is_from_gateway=2);
 					Set(GROUP(${CALLERID(num)})=);
-					if ("${gs_installation_type}" = "single")
-						jump ${fw_${is_call_from}_unavail}@to-internal-users-self;
-					else
-						Dial(Local/${fw_${is_call_from}_unavail}/n,200);
+					Dial(Local/${fw_${is_call_from}_unavail}/n,200);
 					&hangup-proper-status();
 				}
 				goto user_uncallable;
@@ -1142,10 +1133,7 @@ context to-internal-users-self {
 					if ( "${is_from_gateway}" = "1" )
 						Set(__is_from_gateway=2);
 					Set(GROUP(${CALLERID(num)})=);
-					if ("${gs_installation_type}" = "single")
-						jump ${fw_${is_call_from}_offline}@to-internal-users-self;
-					else
-						Dial(Local/${fw_${is_call_from}_offline}/n,200);
+					Dial(Local/${fw_${is_call_from}_offline}/n,200);
 					Congestion(3);
 					&hangup-proper-status();
 				}
