@@ -108,4 +108,6 @@ echo 'connid_enabled=', ($connid_enabled ? '1':'0') ,';',"\n";
 $installation_type = gs_get_conf('GS_INSTALLATION_TYPE');
 echo 'gs_installation_type=', $installation_type,';',"\n";
 
+$call_recording_auto = gs_get_conf('GS_CALL_RECORDING_AUTO');
+echo 'call_recording_auto=', ($call_recording_auto ? '1':'0') ,';',"\n";
 ?>
